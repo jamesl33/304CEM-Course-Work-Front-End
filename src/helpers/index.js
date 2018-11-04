@@ -1,2 +1,2 @@
-export * from './store'
-export * from './history'
+export * from './store.js'
+export * from './history.js'

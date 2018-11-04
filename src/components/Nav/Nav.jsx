@@ -11,7 +11,7 @@ class Nav extends React.Component {
                 <div className={'nav' + (this.props.menuOpen ? ' responsive' : '')}>
                     <div className="left-justify">
                         <Link to="" className="menu-icon" onClick={(e) => {e.preventDefault(); this.props.toggleMenu()}}>
-                            <i className="fa fa-bars"></i>
+                            <i className={'fa' + (this.props.menuOpen ? ' fa-times' : ' fa-bars')}></i>
                         </Link>
                         <Link to="/" onClick={() => {this.props.menuOpen && this.props.toggleMenu()}}>Home</Link>
                     </div>
