@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from '../field.jsx'
 import { required } from '../validation.js'
-import './Login.css'
+import '../styles.css'
 
 class LoginForm extends React.Component {
     render() {
         return (
-            <div className="login-form">
+            <div className="form login-form">
                 <form onSubmit={this.props.handleSubmit}>
                     <p>Log In</p>
                     <div className="row">
