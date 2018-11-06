@@ -1,9 +1,9 @@
 import React from 'react'
 
 const renderField = ({ input, type, placeholder, meta: { touched, error, warning } }) => (
-    <div>
-        <input {...input} type={type} placeholder={(touched && ((error) || (warning))) || placeholder}/>
-    </div>
+    <>
+        <input {...input} style={{borderColor: touched && error ? 'red' : ''}} type={type} placeholder={(touched && ((error) || (warning))) || placeholder}/>
+    </>
 )
 
 export { renderField }

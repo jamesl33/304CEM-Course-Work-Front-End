@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from '../field.jsx'
-import { required } from '../validation.js'
+import { email, passwordsMatch, required } from '../validation.js'
 import '../styles.css'
 
 class RegisterForm extends React.Component {
@@ -49,7 +49,7 @@ class RegisterForm extends React.Component {
                             <label>Confirm Password</label>
                         </div>
                         <div className="col-80">
-                            <Field name="confirmedUserPassword" component={renderField} type="password" placeholder="Confirm Password" validate={required}/>
+                            <Field name="confirmedUserPassword" component={renderField} type="password" placeholder="Confirm Password" validate={passwordsMatch}/>
                         </div>
                     </div>
                     <div className="row">
@@ -57,7 +57,7 @@ class RegisterForm extends React.Component {
                             <label>Email Address</label>
                         </div>
                         <div className="col-80">
-                            <Field name="emailAddress" component={renderField} type="text" placeholder="Email Address" validate={required}></Field>
+                            <Field name="emailAddress" component={renderField} type="text" placeholder="Email Address" validate={[email, required]}></Field>
                         </div>
                     </div>
                     <div className="row">
