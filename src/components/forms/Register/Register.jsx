@@ -35,6 +35,15 @@ class RegisterForm extends React.Component {
                             <Field name="userPassword" component={renderField} type="password" placeholder="Password" validate={required}/>
                         </div>
                     </div>
+                    {this.props.passwordStrength &&
+                     <div className="row password-strength">
+                         <div className="col-20">
+                             <label>Password Strength</label>
+                         </div>
+                         <div className="col-80">
+                             <progress value={this.props.passwordStrength} max="5"></progress>
+                         </div>
+                     </div>}
                     <div className="row">
                         <div className="col-20">
                             <label>Confirm Password</label>
@@ -62,6 +71,10 @@ class RegisterForm extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    passwordStrength: state.form.RegisterForm.passwordStrength
+})
+
 const mapDispatchToProps = (dispatch) => ({
     handleSubmit: () => {
         // TODO
@@ -69,6 +82,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const connectedForm = connect(
+    mapStateToProps,
     mapDispatchToProps
 )(RegisterForm)
 
