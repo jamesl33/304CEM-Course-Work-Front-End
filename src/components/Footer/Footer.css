@@ -1,0 +1,14 @@
+footer {
+    background: #f7f7f7;
+    height: 5em;
+    margin-top: 5em;
+    overflow: hidden;
+}
+
+footer .left-justify {
+    float: left;
+}
+
+footer .right-justify {
+    float: right;
+}

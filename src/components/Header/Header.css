@@ -1,9 +1,9 @@
-.nav {
-    background: #333;
+header {
+    background: #4a5f88;
     overflow: hidden;
 }
 
-.nav a {
+header a {
     color: #f2f2f2;
     display: block;
     float: left;
@@ -12,45 +12,45 @@
     text-decoration: none;
 }
 
-.nav a:hover {
+header a:hover {
     background-color: #ddd;
     color: black;
 }
 
-.nav div.left-justify {
+header div.left-justify {
     float: left;
 }
 
-.nav div.right-justify {
+header div.right-justify {
     float: right;
 }
 
-.nav div.left-justify a:first-child {
+header div.left-justify a:first-child {
     display: none;
 }
 
 @media screen and (max-width: 600px) {
-    .nav {
+    header {
         position: relative;
     }
 
-    .nav div {
+    header div {
         float: left;
     }
 
-    .nav div a {
+    header div a {
         display: none;
     }
 
-    .nav div.left-justify a.menu-icon {
+    header div.left-justify a.menu-icon {
         display: block;
     }
 
-    .nav.responsive div {
+    header.responsive div {
         float: none;
     }
 
-    .nav.responsive div a {
+    header.responsive div a {
         display: block;
         float: none;
         text-align: left;
