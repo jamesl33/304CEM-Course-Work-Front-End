@@ -45,6 +45,11 @@
     padding-top: 0.5em;
 }
 
+.form span {
+    font-size: 0.8em;
+    color: red;
+}
+
 .form .col-20 {
     float: left;
     margin-top: 0.5em;
