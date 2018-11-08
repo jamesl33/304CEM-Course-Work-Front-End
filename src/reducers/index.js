@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import { navReducer } from '../reducers/nav'
+import { headerReducer } from '../reducers/header'
 import { formReducer } from '../reducers/form'
 
 const rootReducer = combineReducers({
-    nav: navReducer,
+    header: headerReducer,
     form: formReducer
 })
 

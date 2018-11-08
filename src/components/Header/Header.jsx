@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { toggleMenu } from '../../actions/nav'
+import { toggleMenu } from '../../actions/header'
 import './Header.css'
 
 class Header extends React.Component {
@@ -24,7 +24,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    menuOpen: state.nav.menuOpen
+    menuOpen: state.header.menuOpen
 })
 
 const mapDispatchToProps = (dispatch) => ({
