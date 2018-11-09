@@ -8,7 +8,7 @@ class Footer extends React.Component {
             <footer>
                 <div className="left-justify">
                     <ul>
-                        <a href="//github.coventry.ac.uk/leej64/304CEM-Course-Work">GitHub</a>
+                        <a href="//github.coventry.ac.uk/leej64/304CEM-Course-Work-Front-End">GitHub</a>
                         <Link to="/about">About</Link>
                     </ul>
                     <div>

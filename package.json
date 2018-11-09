@@ -1,7 +1,7 @@
 {
-    "name": "304CEM-Course-Work",
+    "name": "304CEM-Course-Work-Front-End",
     "version": "0.1.0",
-    "description": "A simple react/redux recipe blog",
+    "description": "Font end for a simple react/redux recipe blog",
     "dependencies": {
         "react": "^16.6.0",
         "react-dom": "^16.6.0",
@@ -23,7 +23,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.coventry.ac.uk/leej64/304CEM-Course-Work"
+        "url": "https://github.coventry.ac.uk/leej64/304CEM-Course-Work-Front-End"
     },
     "author": "James Lee",
     "license": "GPL-3.0-or-later",
