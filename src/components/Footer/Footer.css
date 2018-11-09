@@ -1,6 +1,6 @@
 footer {
     background: #f7f7f7;
-    height: 5em;
+    height: 10em;
     margin-top: 5em;
     overflow: hidden;
 }
@@ -11,4 +11,29 @@ footer .left-justify {
 
 footer .right-justify {
     float: right;
+}
+
+footer ul {
+    list-style-type: none;
+    padding-left: 2.5em;
+    padding-top: 2em;
+}
+
+footer ul a {
+    text-decoration: none;
+    font-size: 0.8em;
+    padding: 0.5em;
+    color: black;
+}
+
+footer ul a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+footer p {
+    font-size: 0.8em;
+    color: grey;
+    padding-top: 1em;
+    padding-left: 3.5em;
 }
