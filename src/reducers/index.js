@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux'
-import { headerReducer } from '../reducers/header'
-import { formReducer } from '../reducers/form'
+import { formReducer } from '../reducers/formReducer'
+import { headerReducer } from '../reducers/headerReducer'
+import { registrationReducer } from '../reducers/registrationReducer'
+import { loginReducer } from '../reducers/loginReducer'
+import { logoutReducer } from '../reducers/logoutReducer'
 
 const rootReducer = combineReducers({
+    form: formReducer,
     header: headerReducer,
-    form: formReducer
+    registration: registrationReducer,
+    login: loginReducer,
+    logout: logoutReducer
 })
 
 export { rootReducer }
