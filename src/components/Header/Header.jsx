@@ -23,7 +23,7 @@ class Header extends React.Component {
                       </>) ||
                      <>
                          <Link to="/profile">{JSON.parse(localStorage.getItem('user')).userName}</Link>
-                         <Link to="/logout" onClick={() => {!this.props.loggingOut && this.props.logout()}}>Logout</Link>
+                         <Link to="/" onClick={() => {!this.props.loggingOut && this.props.logout(JSON.parse(localStorage.getItem('user')))}}>Logout</Link>
                      </>}
                 </div>
             </header>
@@ -33,16 +33,16 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => ({
     menuOpen: state.header.menuOpen,
-    loggedIn: state.login.loggedIn,
-    loggingOut: state.logout.loggingOut
+    loggedIn: state.authentication.loggedIn,
+    loggingOut: state.authentication.loggingOut
 })
 
 const mapDispatchToProps = (dispatch) => ({
     toggleMenu: () => {
         return dispatch(toggleMenu())
     },
-    logout: () => {
-        return dispatch(userActions.logout())
+    logout: (user) => {
+        return dispatch(userActions.logout(user))
     }
 })
 

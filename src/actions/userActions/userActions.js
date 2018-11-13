@@ -8,25 +8,25 @@ function login(user) {
 
         userService.login(user)
                    .then(user => {
-                       dispatch(success(user.userName))
+                       dispatch(success(user))
                        history.push('/')
                    })
                    .then(error => {
-                       dispatch(failure(error.toString()))
+                       dispatch(failure(user))
                    })
     }
 
     function request(user) {
         return {
             type: userConstants.LOGIN_REQUEST,
-            payload: user.userName
+            payload: user
         }
     }
 
     function success(user) {
         return {
             type: userConstants.LOGIN_SUCCESS,
-            payload: user.userName
+            payload: user
         }
     }
 
@@ -40,29 +40,29 @@ function login(user) {
 
 function register(user) {
     return dispatch => {
-        dispatch(request(user.userName))
+        dispatch(request(user))
 
         userService.register(user)
                    .then(user => {
-                       dispatch(success(user.userName))
+                       dispatch(success(user))
                        history.push('/')
                    })
                    .then(error => {
-                       dispatch(failure(error.toString()))
+                       dispatch(failure(error))
                    })
     }
 
     function request(user) {
         return {
             type: userConstants.REGISTER_REQUEST,
-            payload: user.userName
+            payload: user
         }
     }
 
     function success(user) {
         return {
             type: userConstants.REGISTER_SUCCESS,
-            payload: user.userName
+            payload: user
         }
     }
 
@@ -74,36 +74,24 @@ function register(user) {
     }
 }
 
-function logout() {
+function logout(user) {
     return dispatch => {
-        dispatch(request())
-
+        dispatch(request(user))
         userService.logout()
-                   .then(dispatch(success))
-                   .then(history.push('/'))
-                   .then(error => {
-                       dispatch(failure(error.toString()))
-                   })
+        dispatch(success(user))
     }
 
     function request(user) {
         return {
             type: userConstants.LOGOUT_REQUEST,
-            payload: user.userName
+            payload: user
         }
     }
 
     function success(user) {
         return {
             type: userConstants.LOGOUT_SUCCESS,
-            payload: user.userName
-        }
-    }
-
-    function failure(error) {
-        return {
-            type: userConstants.LOGOUT_FAILURE,
-            payload: error
+            payload: user
         }
     }
 }

@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    loggingIn: state.login.loggingIn
+    loggingIn: state.authentication.loggingIn
 })
 
 const mapDispatchToProps = (dispatch) => ({

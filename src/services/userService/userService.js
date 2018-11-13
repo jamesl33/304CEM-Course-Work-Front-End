@@ -1,6 +1,11 @@
 import { apiUrl } from '../../constants'
 import { history } from '../../helpers'
 
+const requestOptions = {
+    method: 'post',
+    headers: { 'content-type': 'application/json', 'authorization': JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).token : undefined }
+}
+
 function handleResponse(response) {
     return response.text().then(text => {
         if (!response.ok && response.status === 401) {
@@ -14,13 +19,7 @@ function handleResponse(response) {
 }
 
 function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    }
-
-    return fetch(`${apiUrl}/register`, requestOptions)
+    return fetch(`${apiUrl}/register`, Object.assign({}, requestOptions, {body: JSON.stringify(user)}))
         .then(handleResponse)
         .then(user => {
             localStorage.setItem('user', JSON.stringify(user))
@@ -30,13 +29,7 @@ function register(user) {
 }
 
 function login(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    }
-
-    return fetch(`${apiUrl}/login`, requestOptions)
+    return fetch(`${apiUrl}/login`, Object.assign({}, requestOptions, {body: JSON.stringify(user)}))
         .then(handleResponse)
         .then(user => {
             if (user.token) {
