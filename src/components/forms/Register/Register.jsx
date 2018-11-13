@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from '../field.jsx'
 import { email, passwordsMatch, required } from '../validation.js'
+import { userActions } from '../../../actions/userActions'
 import '../styles.css'
 
 class RegisterForm extends React.Component {
     render() {
         return (
             <div className="form register-form">
-                <form onSubmit={this.props.handleSubmit}>
+                <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
                     <p>Register</p>
                     <div className="row">
                         <div className="col-20">
@@ -62,7 +63,7 @@ class RegisterForm extends React.Component {
                     </div>
                     <div className="row">
                         <div className="right-justify">
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid}>Register</button>
+                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering}>Register</button>
                         </div>
                     </div>
                 </form>
@@ -72,12 +73,13 @@ class RegisterForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    passwordStrength: state.form.RegisterForm.passwordStrength
+    passwordStrength: state.form.RegisterForm.passwordStrength,
+    registering: state.registration.registering
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    handleSubmit: () => {
-        // TODO
+    onSubmit: (values) => {
+        dispatch(userActions.register(values))
     }
 })
 

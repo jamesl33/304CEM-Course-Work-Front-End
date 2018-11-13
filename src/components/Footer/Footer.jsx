@@ -11,12 +11,9 @@ class Footer extends React.Component {
                         <a href="//github.coventry.ac.uk/leej64/304CEM-Course-Work-Front-End">GitHub</a>
                         <Link to="/about">About</Link>
                     </ul>
-                    <div>
-                        <p>Designed and built by James Lee at Coventry University for the 304CEM module.</p>
-                    </div>
                 </div>
                 <div className="right-justify">
-
+                    <p>Designed and created by James Lee for 304CEM at Coventry University</p>
                 </div>
             </footer>
         )

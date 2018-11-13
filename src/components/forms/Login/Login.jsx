@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from '../field.jsx'
 import { required } from '../validation.js'
+import { userActions } from '../../../actions/userActions'
 import '../styles.css'
 
 class LoginForm extends React.Component {
     render() {
         return (
             <div className="form login-form">
-                <form onSubmit={this.props.handleSubmit}>
+                <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
                     <p>Log In</p>
                     <div className="row">
                         <div className="col-20">
@@ -29,7 +30,7 @@ class LoginForm extends React.Component {
                     </div>
                     <div className="row">
                         <div className="right-justify">
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid}>Login</button>
+                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.loggingIn}>Login</button>
                         </div>
                     </div>
                 </form>
@@ -38,13 +39,18 @@ class LoginForm extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    loggingIn: state.login.loggingIn
+})
+
 const mapDispatchToProps = (dispatch) => ({
-    handleSubmit: () => {
-        // TODO
+    onSubmit: (values) => {
+        dispatch(userActions.login(values))
     }
 })
 
 const connectedForm = connect(
+    mapStateToProps,
     mapDispatchToProps
 )(LoginForm)
 

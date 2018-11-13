@@ -1,6 +1,6 @@
 footer {
     background: #f7f7f7;
-    height: 10em;
+    height: 5em;
     margin-top: 5em;
     overflow: hidden;
 }
@@ -15,15 +15,15 @@ footer .right-justify {
 
 footer ul {
     list-style-type: none;
-    padding-left: 2.5em;
-    padding-top: 2em;
+    margin-left: 1em;
+    margin-top: 1em;
 }
 
 footer ul a {
     text-decoration: none;
     font-size: 0.8em;
-    padding: 0.5em;
     color: black;
+    padding: 0.5em;
 }
 
 footer ul a:hover {
@@ -34,6 +34,6 @@ footer ul a:hover {
 footer p {
     font-size: 0.8em;
     color: grey;
-    padding-top: 1em;
-    padding-left: 3.5em;
+    margin-right: 1.5em;
+    margin-top: 1.5em;
 }
