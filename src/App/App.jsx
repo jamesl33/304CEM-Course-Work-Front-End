@@ -5,6 +5,7 @@ import { Header } from '../components/Header'
 import { Home } from '../Home'
 import { Login } from '../Login'
 import { Register } from '../Register'
+import { About } from '../About'
 import { Footer } from '../components/Footer'
 import './App.css'
 
@@ -20,6 +21,7 @@ class App extends React.Component {
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/register" component={Register}/>
+                            <Route exact path="/about" component={About}/>
                         </div>
                         <Footer/>
                     </>
