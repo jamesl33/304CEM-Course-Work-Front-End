@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route } from 'react-router-dom'
+import { Switch, Router, Route } from 'react-router-dom'
 import { helpers } from '../helpers'
 import { Header } from '../components/Header'
 import { Home } from '../Home'
@@ -9,6 +9,7 @@ import { RecipeUpload } from '../RecipeUpload'
 import { RecipeEdit } from '../RecipeEdit'
 import { Recipe } from '../Recipe'
 import { Profile } from '../Profile'
+import { NotFound } from '../NotFound'
 import { Footer } from '../components/Footer'
 import './App.css'
 
@@ -21,13 +22,16 @@ class App extends React.Component {
                     <>
                         <Header/>
                         <div className="content">
-                            <Route exact path="/" component={Home}/>
-                            <Route exact path="/login" component={Login}/>
-                            <Route exact path="/register" component={Register}/>
-                            <Route exact path="/recipe/new" component={RecipeUpload}/>
-                            <Route exact path="/recipe/edit/:id" component={RecipeEdit}/>
-                            <Route exact path="/recipe/view/:id" component={Recipe}/>
-                            <Route exact path="/profile/:id" component={Profile}/>
+                            <Switch>
+                                <Route exact path="/" component={Home}/>
+                                <Route exact path="/login" component={Login}/>
+                                <Route exact path="/register" component={Register}/>
+                                <Route exact path="/recipe/new" component={RecipeUpload}/>
+                                <Route exact path="/recipe/edit/:id" component={RecipeEdit}/>
+                                <Route exact path="/recipe/view/:id" component={Recipe}/>
+                                <Route exact path="/profile/:id" component={Profile}/>
+                                <Route component={NotFound}/>
+                            </Switch>
                         </div>
                         <Footer/>
                     </>
