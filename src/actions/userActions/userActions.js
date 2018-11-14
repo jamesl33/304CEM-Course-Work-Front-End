@@ -11,8 +11,8 @@ function login(user) {
                        dispatch(success(user))
                        history.push('/')
                    })
-                   .then(error => {
-                       dispatch(failure(user))
+                   .catch(error => {
+                       dispatch(failure(error))
                    })
     }
 
@@ -47,7 +47,7 @@ function register(user) {
                        dispatch(success(user))
                        history.push('/')
                    })
-                   .then(error => {
+                   .catch(error => {
                        dispatch(failure(error))
                    })
     }

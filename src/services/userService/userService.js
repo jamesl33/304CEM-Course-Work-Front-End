@@ -1,5 +1,4 @@
 import { apiUrl } from '../../constants'
-import { history } from '../../helpers'
 
 const requestOptions = {
     method: 'post',
@@ -8,28 +7,30 @@ const requestOptions = {
 
 function handleResponse(response) {
     return response.text().then(text => {
+        const data = text && JSON.parse(text)
+
         if (!response.ok && response.status === 401) {
-            logout()
-            history.push('/login')
-            window.location.reload()
+            return Promise.reject((data && data.message) || response.statusText)
         }
 
-        return text && JSON.parse(text)
+        return data
     })
 }
 
 function register(user) {
-    return fetch(`${apiUrl}/register`, Object.assign({}, requestOptions, {body: JSON.stringify(user)}))
+    return fetch(`${apiUrl}/user/register`, Object.assign({}, requestOptions, { body: JSON.stringify(user) }))
         .then(handleResponse)
         .then(user => {
-            localStorage.setItem('user', JSON.stringify(user))
+            if (user.token) {
+                localStorage.setItem('user', JSON.stringify(user))
+            }
 
             return user
         })
 }
 
 function login(user) {
-    return fetch(`${apiUrl}/login`, Object.assign({}, requestOptions, {body: JSON.stringify(user)}))
+    return fetch(`${apiUrl}/user/login`, Object.assign({}, requestOptions, { body: JSON.stringify(user) }))
         .then(handleResponse)
         .then(user => {
             if (user.token) {

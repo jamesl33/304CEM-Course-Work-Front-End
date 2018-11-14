@@ -8,7 +8,7 @@ const reducers = formReducer.plugin({
     RegisterForm: (state = { passwordStrength: undefined }, action) => {
         switch (action.type) {
         case '@@redux-form/CHANGE':
-            if (action.meta.field === 'userPassword') {
+            if (action.meta.field === 'password') {
                 if (action.payload === '') {
                     return Object.assign({}, state, {
                         passwordStrength: undefined

@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
                             <label>User Name</label>
                         </div>
                         <div className="col-80">
-                            <Field name="userName" component={renderField} type="text" placeholder="Email / User Name" validate={required}/>
+                            <Field name="username" component={renderField} type="text" placeholder="Email / User Name" validate={required}/>
                         </div>
                     </div>
                     <div className="row">
@@ -25,13 +25,16 @@ class LoginForm extends React.Component {
                             <label>Password</label>
                         </div>
                         <div className="col-80">
-                            <Field name="userPassword" component={renderField} type="password" placeholder="Password" validate={required}/>
+                            <Field name="password" component={renderField} type="password" placeholder="Password" validate={required}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="right-justify">
                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.loggingIn}>Login</button>
                         </div>
+                    </div>
+                    <div className="errors">
+                        <span>{this.props.error && '* ' + this.props.error}</span>
                     </div>
                 </form>
             </div>
@@ -40,6 +43,7 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    error: state.authentication.login.error,
     loggingIn: state.authentication.loggingIn
 })
 
