@@ -14,13 +14,18 @@
     margin-right: 20%;
 }
 
+.recipe-form {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .form p {
     border-bottom: 0.1em solid;
     margin-bottom: 1em;
     padding-bottom: 0.5em;
 }
 
-.form input[type=password], .form input[type=text], .form select, .form text-area {
+.form input[type=password], .form input[type=text], .form select, .form textarea {
     border-radius: 0.25em;
     border: 1px solid #ccc;
     box-sizing : border-box;
@@ -56,10 +61,26 @@
     width: 20%;
 }
 
+.form .col-10 {
+    float: left;
+    margin-top: 0.5em;
+    width: 10%;
+}
+
 .form .col-80 {
     float: left;
     margin-top: 0.5em;
     width: 80%;
+}
+
+.form .col-90 {
+    float: left;
+    margin-top: 0.5em;
+    width: 90%;
+}
+
+.form ul {
+    list-style-type: none;
 }
 
 .form .row:after {

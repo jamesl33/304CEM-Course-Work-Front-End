@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { renderField } from '../field.jsx'
+import { renderInput } from '../fields.jsx'
 import { email, passwordsMatch, required } from '../validation.js'
 import { userActions } from '../../../actions/userActions'
 import '../styles.css'
@@ -17,7 +17,7 @@ class RegisterForm extends React.Component {
                             <label>User Name</label>
                         </div>
                         <div className="col-80">
-                            <Field name="username" component={renderField} type="text" placeholder="User Name" validate={required}></Field>
+                            <Field name="username" component={renderInput} type="text" placeholder="User Name" validate={required}></Field>
                         </div>
                     </div>
                     <div className="row">
@@ -25,7 +25,7 @@ class RegisterForm extends React.Component {
                             <label>Real Name</label>
                         </div>
                         <div className="col-80">
-                            <Field name="name" component={renderField} type="text" placeholder="Real Name" validate={required}></Field>
+                            <Field name="name" component={renderInput} type="text" placeholder="Real Name" validate={required}></Field>
                         </div>
                     </div>
                     <div className="row">
@@ -33,7 +33,7 @@ class RegisterForm extends React.Component {
                             <label>Password</label>
                         </div>
                         <div className="col-80">
-                            <Field name="password" component={renderField} type="password" placeholder="Password" validate={required}/>
+                            <Field name="password" component={renderInput} type="password" placeholder="Password" validate={required}/>
                         </div>
                     </div>
                     {this.props.passwordStrength &&
@@ -50,7 +50,7 @@ class RegisterForm extends React.Component {
                             <label>Confirm Password</label>
                         </div>
                         <div className="col-80">
-                            <Field name="confirmedPassword" component={renderField} type="password" placeholder="Confirm Password" validate={passwordsMatch}/>
+                            <Field name="confirmedPassword" component={renderInput} type="password" placeholder="Confirm Password" validate={passwordsMatch}/>
                         </div>
                     </div>
                     <div className="row">
@@ -58,7 +58,7 @@ class RegisterForm extends React.Component {
                             <label>Email Address</label>
                         </div>
                         <div className="col-80">
-                            <Field name="email" component={renderField} type="text" placeholder="Email Address" validate={[email, required]}></Field>
+                            <Field name="email" component={renderInput} type="text" placeholder="Email Address" validate={[email, required]}></Field>
                         </div>
                     </div>
                     <div className="row">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { renderField } from '../field.jsx'
+import { renderInput } from '../fields.jsx'
 import { required } from '../validation.js'
 import { userActions } from '../../../actions/userActions'
 import '../styles.css'
@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
                             <label>User Name</label>
                         </div>
                         <div className="col-80">
-                            <Field name="username" component={renderField} type="text" placeholder="Email / User Name" validate={required}/>
+                            <Field name="username" component={renderInput} type="text" placeholder="Email / User Name" validate={required}/>
                         </div>
                     </div>
                     <div className="row">
@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
                             <label>Password</label>
                         </div>
                         <div className="col-80">
-                            <Field name="password" component={renderField} type="password" placeholder="Password" validate={required}/>
+                            <Field name="password" component={renderInput} type="password" placeholder="Password" validate={required}/>
                         </div>
                     </div>
                     <div className="row">
