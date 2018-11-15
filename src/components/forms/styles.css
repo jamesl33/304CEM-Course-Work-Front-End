@@ -173,3 +173,18 @@
         padding-bottom: 0.5em;
     }
 }
+
+@media screen and (max-width: 900px) {
+    .recipe-form {
+        margin-top: 2.5em;
+    }
+
+    .recipe-form .col-20, .recipe-form .col-80, .recipe-form input[type=submit] {
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .recipe-form label {
+        padding-bottom: 0.5em;
+    }
+}
