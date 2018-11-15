@@ -9,7 +9,6 @@ const userConstants = {
 
     LOGOUT_REQUEST: 'USERS_LOGOUT_REQUEST',
     LOGOUT_SUCCESS: 'USERS_LOGOUT_SUCESS',
-    LOGOUT_FAILURE: 'USERS_LOGOUT_FAILURE'
 }
 
 export { userConstants }
