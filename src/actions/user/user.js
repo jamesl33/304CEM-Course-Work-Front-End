@@ -4,7 +4,7 @@ import { helpers } from '../../helpers'
 
 function login(user) {
     return dispatch => {
-        dispatch(request(user.userName))
+        dispatch(request(user))
 
         services.user.login(user)
                    .then(user => {
