@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import { formReducer } from '../reducers/formReducer'
-import { headerReducer } from '../reducers/headerReducer'
-import { authenticationReducer } from '../reducers/authenticationReducer'
+import { authentication } from './authentication'
+import { form } from './form'
+import { header } from './header'
 
-const rootReducer = combineReducers({
-    authentication: authenticationReducer,
-    form: formReducer,
-    header: headerReducer,
+const reducers = combineReducers({
+    authentication: authentication,
+    form: form,
+    header: header,
 })
 
-export { rootReducer }
+export { reducers }

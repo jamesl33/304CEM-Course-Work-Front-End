@@ -1,4 +1,4 @@
-import { userConstants } from '../../constants'
+import { constants } from '../../constants'
 
 const user = localStorage.getItem('user')
 
@@ -12,45 +12,45 @@ const initialState = {
     user: user ? user : undefined
 }
 
-function authenticationReducer(state = initialState, action) {
+function authentication(state = initialState, action) {
     switch (action.type) {
-    case userConstants.REGISTER_REQUEST:
+    case constants.user.REGISTER_REQUEST:
         return Object.assign({}, state, {
             registering: true
         })
-    case userConstants.REGISTER_SUCCESS:
+    case constants.user.REGISTER_SUCCESS:
         return Object.assign({}, state, {
             loggedIn: true,
             registering: false,
             registration: { error: undefined }
         })
-    case userConstants.REGISTER_FAILURE:
+    case constants.user.REGISTER_FAILURE:
         return Object.assign({}, state, {
             registering: false,
             registration: { error: action.payload }
         })
-    case userConstants.LOGIN_REQUEST:
+    case constants.user.LOGIN_REQUEST:
         return Object.assign({}, state, {
             loggingIn: true,
             user: action.payload
         })
-    case userConstants.LOGIN_SUCCESS:
+    case constants.user.LOGIN_SUCCESS:
         return Object.assign({}, state, {
             loggedIn: true,
             loggingIn: false,
             login: { error: undefined },
             user: action.payload
         })
-    case userConstants.LOGIN_FAILURE:
+    case constants.user.LOGIN_FAILURE:
         return Object.assign({}, state, {
             loggingIn: false,
             login: { error: action.payload }
         })
-    case userConstants.LOGOUT_REQUEST:
+    case constants.user.LOGOUT_REQUEST:
         return Object.assign({}, state, {
             loggingOut: true
         })
-    case userConstants.LOGOUT_SUCCESS:
+    case constants.user.LOGOUT_SUCCESS:
         return Object.assign({}, state, {
             loggedIn: false,
             loggingOut: false,
@@ -61,4 +61,4 @@ function authenticationReducer(state = initialState, action) {
     }
 }
 
-export { authenticationReducer }
+export { authentication }

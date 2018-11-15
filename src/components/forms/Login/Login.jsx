@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { renderInput } from '../fields.jsx'
 import { required } from '../validation.js'
-import { userActions } from '../../../actions/userActions'
-import '../styles.css'
+import { actions } from '../../../actions'
+import '../forms.css'
 
 class LoginForm extends React.Component {
     render() {
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onSubmit: (values) => {
-        dispatch(userActions.login(values))
+        dispatch(actions.user.login(values))
     }
 })
 

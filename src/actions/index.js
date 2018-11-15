@@ -1,9 +1,11 @@
 import { user } from './user'
+import { header } from './header'
 import { recipe } from './recipe'
 
-const services = {
+const actions = {
     user: user,
+    header: header,
     recipe: recipe
 }
 
-export { services }
+export { actions }

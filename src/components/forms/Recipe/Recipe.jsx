@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { renderInput, renderTextarea, renderFileInput } from '../fields.jsx'
 import { required } from '../validation.js'
-import '../styles.css'
+import '../forms.css'
 
 const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
     <>

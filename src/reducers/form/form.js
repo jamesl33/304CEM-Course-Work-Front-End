@@ -25,4 +25,4 @@ const reducers = formReducer.plugin({
     }
 })
 
-export { reducers as formReducer }
+export { reducers as form }

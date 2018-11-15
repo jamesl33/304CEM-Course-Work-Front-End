@@ -1,4 +1,4 @@
-const userConstants = {
+const user = {
     REGISTER_REQUEST: 'REGISTER_REQUEST',
     REGISTER_SUCCESS: 'REGISTER_SUCCESS',
     REGISTER_FAILURE: 'REGISTER_FAILURE',
@@ -11,4 +11,4 @@ const userConstants = {
     LOGOUT_SUCCESS: 'USERS_LOGOUT_SUCESS',
 }
 
-export { userConstants }
+export { user }

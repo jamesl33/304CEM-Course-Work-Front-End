@@ -1,4 +1,4 @@
-import { apiUrl } from '../../constants'
+import { constants } from '../../constants'
 
 const requestOptions = {
     method: 'post',
@@ -18,7 +18,7 @@ function handleResponse(response) {
 }
 
 function register(user) {
-    return fetch(`${apiUrl}/user/register`, Object.assign({}, requestOptions, { body: JSON.stringify(user) }))
+    return fetch(`${constants.api.url}/user/register`, Object.assign({}, requestOptions, { body: JSON.stringify(user) }))
         .then(handleResponse)
         .then(user => {
             if (user.token) {
@@ -30,7 +30,7 @@ function register(user) {
 }
 
 function login(user) {
-    return fetch(`${apiUrl}/user/login`, Object.assign({}, requestOptions, { body: JSON.stringify(user) }))
+    return fetch(`${constants.api.url}/user/login`, Object.assign({}, requestOptions, { body: JSON.stringify(user) }))
         .then(handleResponse)
         .then(user => {
             if (user.token) {
@@ -45,10 +45,10 @@ function logout() {
     localStorage.removeItem('user')
 }
 
-const userService = {
+const user = {
     register,
     login,
     logout
 }
 
-export { userService }
+export { user }

@@ -4,4 +4,8 @@ const toggleMenu = () => {
     }
 }
 
-export { toggleMenu }
+const header = {
+    toggleMenu
+}
+
+export { header }

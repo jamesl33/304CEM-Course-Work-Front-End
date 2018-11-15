@@ -1,15 +1,15 @@
-import { userConstants } from '../../constants'
-import { userService } from '../../services/userService'
-import { history } from '../../helpers'
+import { constants } from '../../constants'
+import { services } from '../../services'
+import { helpers } from '../../helpers'
 
 function login(user) {
     return dispatch => {
         dispatch(request(user.userName))
 
-        userService.login(user)
+        services.user.login(user)
                    .then(user => {
                        dispatch(success(user))
-                       history.push('/')
+                       helpers.history.push('/')
                    })
                    .catch(error => {
                        dispatch(failure(error))
@@ -18,21 +18,21 @@ function login(user) {
 
     function request(user) {
         return {
-            type: userConstants.LOGIN_REQUEST,
+            type: constants.user.LOGIN_REQUEST,
             payload: user
         }
     }
 
     function success(user) {
         return {
-            type: userConstants.LOGIN_SUCCESS,
+            type: constants.user.LOGIN_SUCCESS,
             payload: user
         }
     }
 
     function failure(error) {
         return {
-            type: userConstants.LOGIN_FAILURE,
+            type: constants.user.LOGIN_FAILURE,
             payload: error
         }
     }
@@ -42,10 +42,10 @@ function register(user) {
     return dispatch => {
         dispatch(request(user))
 
-        userService.register(user)
+        services.user.register(user)
                    .then(user => {
                        dispatch(success(user))
-                       history.push('/')
+                       helpers.history.push('/')
                    })
                    .catch(error => {
                        dispatch(failure(error))
@@ -54,21 +54,21 @@ function register(user) {
 
     function request(user) {
         return {
-            type: userConstants.REGISTER_REQUEST,
+            type: constants.user.REGISTER_REQUEST,
             payload: user
         }
     }
 
     function success(user) {
         return {
-            type: userConstants.REGISTER_SUCCESS,
+            type: constants.user.REGISTER_SUCCESS,
             payload: user
         }
     }
 
     function failure(error) {
         return {
-            type: userConstants.REGISTER_FAILURE,
+            type: constants.user.REGISTER_FAILURE,
             payload: error
         }
     }
@@ -77,29 +77,29 @@ function register(user) {
 function logout(user) {
     return dispatch => {
         dispatch(request(user))
-        userService.logout()
+        services.user.logout()
         dispatch(success(user))
     }
 
     function request(user) {
         return {
-            type: userConstants.LOGOUT_REQUEST,
+            type: constants.user.LOGOUT_REQUEST,
             payload: user
         }
     }
 
     function success(user) {
         return {
-            type: userConstants.LOGOUT_SUCCESS,
+            type: constants.user.LOGOUT_SUCCESS,
             payload: user
         }
     }
 }
 
-const userActions = {
+const user = {
     register,
     login,
     logout
 }
 
-export { userActions }
+export { user }

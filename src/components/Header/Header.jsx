@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { toggleMenu } from '../../actions/headerActions'
-import { userActions } from '../../actions/userActions'
+import { actions } from '../../actions'
 import './Header.css'
 
 class Header extends React.Component {
@@ -39,10 +38,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     toggleMenu: () => {
-        return dispatch(toggleMenu())
+        return dispatch(actions.header.toggleMenu())
     },
     logout: (user) => {
-        return dispatch(userActions.logout(user))
+        return dispatch(actions.user.logout(user))
     }
 })
 
