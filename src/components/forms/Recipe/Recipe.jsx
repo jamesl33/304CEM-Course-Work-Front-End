@@ -1,37 +1,36 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, FieldArray, reduxForm } from 'redux-form'
-import { renderInput, renderTextarea } from '../fields.jsx'
+import { renderInput, renderTextarea, renderFileInput } from '../fields.jsx'
 import { required } from '../validation.js'
 import '../styles.css'
 
 const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
-    <ul>
-        {fields.map((field, index) =>
-            <li key={index}>
-                <div className="row">
-                    <div className="col-20">
-                        <label>{'Step ' + (index + 1) + ' image'}</label>
+    <>
+        <ul>
+            {fields.map((field, index) =>
+                <li key={index}>
+                    <div className="row">
+                        <div className="row">
+                            <label>{'Step ' + (index + 1)}</label>
+                        </div>
+                        <div className="col-100">
+                            <Field name={'image-step-' + index} component={renderFileInput}/>
+                        </div>
                     </div>
-                    <div className="col-80">
-
+                    <div className="row">
+                        <div className="col-100">
+                            <Field name={'step-' + index} component={renderTextarea} rows="5" validate={required}/>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-20">
-                        <label>{'Step ' + (index + 1)}</label>
-                    </div>
-                    <div className="col-80">
-                        <Field name={'step-' + index} component={renderTextarea} rows="5" validate={required}/>
-                    </div>
-                </div>
-            </li>
-        )}
-        <div className="left-justify">
-            <button type="button" onClick={() => {fields.push({})}}>Add Step</button>
-            <button type="button" onClick={() => {fields.pop()}}>Remove Step</button>
-        </div>
-    </ul>
+                </li>
+            )}
+            <div className="row right-justify">
+                <button type="button" onClick={() => {fields.push({})}}>Add Step</button>
+                <button type="button" onClick={() => {fields.pop()}} disabled={fields.length <= 1}>Remove Step</button>
+            </div>
+        </ul>
+    </>
 )
 
 class RecipeForm extends React.Component {
@@ -93,7 +92,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onSubmit: (values) => {
-        console.log(values)
+
     }
 })
 
@@ -103,7 +102,11 @@ const connectedForm = connect(
 )(RecipeForm)
 
 const reduxConnectedForm = reduxForm({
-    form: 'RecipeForm'
+    form: 'RecipeForm',
+    initialValues: {
+        steps: [{}]
+    }
+
 })(connectedForm)
 
 export { reduxConnectedForm as RecipeForm }

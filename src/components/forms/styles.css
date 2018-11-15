@@ -25,20 +25,29 @@
     padding-bottom: 0.5em;
 }
 
-.form input[type=password], .form input[type=text], .form select, .form textarea {
+.form input[type=password], .form input[type=text], .form input[type=file], .form select, .form textarea {
     border-radius: 0.25em;
     border: 1px solid #ccc;
-    box-sizing : border-box;
+    box-sizing: border-box;
     padding: 0.75em;
     resize: vertical;
     width: 100%;
+}
+
+.form ul {
+    border-radius: 0.25em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 0.75em;
+    width: 100%;
+    float: left;
 }
 
 .form button {
     margin-left: 0.25em;
     margin-right: 0.25em;
     margin-top: 1em;
-    padding: 0.25em 0.5em 0.25em 0.5em;
+    padding: 0.25em 0.5em;
 }
 
 .form .right-justify {
@@ -61,22 +70,16 @@
     width: 20%;
 }
 
-.form .col-10 {
-    float: left;
-    margin-top: 0.5em;
-    width: 10%;
-}
-
 .form .col-80 {
     float: left;
     margin-top: 0.5em;
     width: 80%;
 }
 
-.form .col-90 {
+.form .col-100 {
     float: left;
     margin-top: 0.5em;
-    width: 90%;
+    width: 100%;
 }
 
 .form ul {

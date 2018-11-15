@@ -14,4 +14,9 @@ const renderTextarea = ({input, placeholder, rows, meta: { touched, error, warni
     </>
 )
 
-export { renderInput, renderTextarea }
+const renderFileInput = (field) => {
+    delete field.input.value
+    return <input type="file" {...field.input} />
+}
+
+export { renderInput, renderTextarea, renderFileInput }
