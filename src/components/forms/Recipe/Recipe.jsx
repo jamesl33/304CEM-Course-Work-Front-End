@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { renderInput, renderTextarea, renderFileInput } from '../fields.jsx'
 import { required } from '../validation.js'
+import { actions } from '../../../actions'
 import '../forms.css'
 
 const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
@@ -37,7 +38,7 @@ class RecipeForm extends React.Component {
     render() {
         return (
             <div className="form recipe-form">
-                <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+                <form>
                     <p>Recipe Upload</p>
                     <div className="row">
                         <div className="col-20">
@@ -73,8 +74,8 @@ class RecipeForm extends React.Component {
                     </div>
                     <div className="row">
                         <div className="right-justify">
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering}>Save</button>
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering}>Publish</button>
+                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onSave)}>Save</button>
+                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onPublish)}>Publish</button>
                         </div>
                     </div>
                     <div className="error">
@@ -91,8 +92,11 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onSubmit: (values) => {
-
+    onSave: (values) => {
+        dispatch(actions.recipe.save(values))
+    },
+    onPublish: (values) => {
+        dispatch(actions.recipe.publish(values))
     }
 })
 

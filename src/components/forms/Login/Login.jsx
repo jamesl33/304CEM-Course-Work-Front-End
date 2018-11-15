@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="form login-form">
-                <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+                <form>
                     <p>Log In</p>
                     <div className="row">
                         <div className="col-20">
@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
                     </div>
                     <div className="row">
                         <div className="right-justify">
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.loggingIn}>Login</button>
+                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.loggingIn} onClick={this.props.handleSubmit(this.props.onSubmit)}>Login</button>
                         </div>
                     </div>
                     <div className="errors">
