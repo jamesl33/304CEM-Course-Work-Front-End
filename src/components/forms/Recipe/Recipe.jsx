@@ -9,25 +9,25 @@ import '../forms.css'
 const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
     <>
         <ul>
-            {fields.map((field, index) =>
-                <li key={index}>
+            {fields.map((step, stepIndex) =>
+                <li key={stepIndex}>
                     <div className="row">
                         <div className="row">
-                            <label>{'Step ' + (index + 1)}</label>
+                            <label>{`Step ${stepIndex + 1}`}</label>
                         </div>
                         <div className="col-100">
-                            <Field name={'image-step-' + index} component={renderFileInput}/>
+                            <Field name={`${step}.image`} component={renderFileInput}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-100">
-                            <Field name={'step-' + index} component={renderTextarea} rows="5" validate={required}/>
+                            <Field name={`${step}.description`} component={renderTextarea} rows="5" validate={required}/>
                         </div>
                     </div>
                 </li>
             )}
             <div className="row right-justify">
-                <button type="button" onClick={() => {fields.push({})}}>Add Step</button>
+                <button type="button" onClick={() => {fields.push()}}>Add Step</button>
                 <button type="button" onClick={() => {fields.pop()}} disabled={fields.length <= 1}>Remove Step</button>
             </div>
         </ul>
