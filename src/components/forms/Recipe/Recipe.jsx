@@ -50,6 +50,14 @@ class RecipeForm extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-20">
+                            <label>Image</label>
+                        </div>
+                        <div className="col-80">
+                            <Field name="image" component={renderFileInput} validate={required}/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-20">
                             <label>Description</label>
                         </div>
                         <div className="col-80">

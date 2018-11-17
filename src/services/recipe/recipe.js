@@ -5,7 +5,9 @@ function _recipeToFormData(recipe) {
     const formData = new FormData()
 
     Object.keys(recipe).forEach(key => {
-        if (key === 'steps') {
+        if (key === 'image') {
+            formData.append('images', recipe.image[0])
+        } else if (key === 'steps') {
             const descriptions = []
 
             recipe.steps.forEach(step => {
