@@ -6,16 +6,22 @@ function _recipeToFormData(recipe) {
 
     Object.keys(recipe).forEach(key => {
         if (key === 'steps') {
-            let descriptions = []
+            const descriptions = []
 
             recipe.steps.forEach(step => {
-                formData.append('images', step.image[0])
-                descriptions.push(step.description)
+                if (step.image.length > 0) {
+                    formData.append('images', step.image[0])
+                }
+
+                descriptions.push({
+                    image: step.image.length > 0 ? true : false, // I need to support optional images per step
+                    description: step.description
+                })
             })
 
             formData.append(key, JSON.stringify(descriptions))
         } else {
-            formData.append(key, recipe.key)
+            formData.append(key, recipe[key])
         }
     })
 

@@ -9,7 +9,6 @@ function save(recipe) {
         services.recipe.save(recipe)
                 .then(() => {
                     dispatch(success())
-                    helpers.history.push('/')
                 })
                 .catch(error => {
                     dispatch(failure(error))
