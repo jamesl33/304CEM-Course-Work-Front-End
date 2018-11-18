@@ -26,7 +26,7 @@ const reducers = formReducer.plugin({
     },
     RecipeForm: (state = {}, action) => {
         switch (action.type) {
-        case constants.recipe.RECIPE_LOAD_SUCCESS:
+        case constants.recipe.RECIPE_EDIT_SUCCESS:
             return Object.assign({}, state, {
                 initial: action.payload,
                 values: action.payload

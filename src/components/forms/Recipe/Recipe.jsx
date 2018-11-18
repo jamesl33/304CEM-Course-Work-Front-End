@@ -37,7 +37,7 @@ const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
 class RecipeForm extends React.Component {
     componentWillMount() {
         if (this.props.id) {
-            this.props.loadRecipe(this.props.id)
+            this.props.editRecipe(this.props.id)
         }
     }
 
@@ -110,8 +110,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    loadRecipe: (id) => {
-        dispatch(actions.recipe.load(id))
+    editRecipe: (id) => {
+        dispatch(actions.recipe.edit(id))
     },
     onSave: (values) => {
         dispatch(actions.recipe.save(values))

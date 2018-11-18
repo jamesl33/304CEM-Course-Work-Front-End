@@ -36,11 +36,11 @@ function save(recipe) {
     }
 }
 
-function load(recipe) {
+function edit(recipe) {
     return dispatch => {
         dispatch(request(recipe))
 
-        services.recipe.load(recipe)
+        services.recipe.edit(recipe)
                 .then(recipe => {
                     dispatch(success(recipe))
                 })
@@ -51,21 +51,21 @@ function load(recipe) {
 
     function request(recipe) {
         return {
-            type: constants.recipe.RECIPE_LOAD_REQUEST,
+            type: constants.recipe.RECIPE_EDIT_REQUEST,
             payload: recipe
         }
     }
 
     function success(recipe) {
         return {
-            type: constants.recipe.RECIPE_LOAD_SUCCESS,
+            type: constants.recipe.RECIPE_EDIT_SUCCESS,
             payload: recipe
         }
     }
 
     function failure(error) {
         return {
-            type: constants.recipe.RECIPE_LOAD_FAILURE,
+            type: constants.recipe.RECIPE_EDIT_FAILURE,
             payload: error
         }
     }
@@ -176,7 +176,7 @@ function update(recipe) {
 
 const recipe = {
     save,
-    load,
+    edit,
     publish,
     unpublish,
     update

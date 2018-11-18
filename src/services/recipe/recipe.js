@@ -36,8 +36,8 @@ function save(recipe) {
         .then(helpers.api.handleResponse)
 }
 
-function load(id) {
-    return fetch(`${constants.api.url}/recipe/load`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({id: id}) }))
+function edit(id) {
+    return fetch(`${constants.api.url}/recipe/edit`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({id: id}) }))
         .then(helpers.api.handleResponse)
 }
 
@@ -61,7 +61,7 @@ function update(recipe) {
 
 const recipe = {
     save,
-    load,
+    edit,
     publish,
     unpublish,
     update
