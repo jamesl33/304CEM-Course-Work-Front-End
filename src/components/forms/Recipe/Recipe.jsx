@@ -35,6 +35,12 @@ const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
 )
 
 class RecipeForm extends React.Component {
+    componentWillMount() {
+        if (this.props.id) {
+            this.props.loadRecipe(this.props.id)
+        }
+    }
+
     render() {
         return (
             <div className="form recipe-form">
@@ -53,7 +59,7 @@ class RecipeForm extends React.Component {
                             <label>Image</label>
                         </div>
                         <div className="col-80">
-                            <Field name="image" component={renderFileInput} validate={required}/>
+                            <Field name="image" component={renderFileInput} validate={this.props.id ? undefined : required}/>
                         </div>
                     </div>
                     <div className="row">
@@ -81,10 +87,14 @@ class RecipeForm extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="right-justify">
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onSave)}>Save</button>
-                            <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onPublish)}>Publish</button>
-                        </div>
+                        {(this.props.id &&
+                          <div className="right-justify">
+                              <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onUpdate)}>Update</button>
+                          </div>) ||
+                         <div className="right-justify">
+                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onSave)}>Save</button>
+                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onPublish)}>Publish</button>
+                         </div>}
                     </div>
                     <div className="error">
                         <span>{this.props.error && '* ' + this.props.error}</span>
@@ -100,11 +110,17 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+    loadRecipe: (id) => {
+        dispatch(actions.recipe.load(id))
+    },
     onSave: (values) => {
         dispatch(actions.recipe.save(values))
     },
     onPublish: (values) => {
         dispatch(actions.recipe.publish(values))
+    },
+    onUpdate: (values) => {
+        dispatch(actions.recipe.update(values))
     }
 })
 
@@ -115,10 +131,9 @@ const connectedForm = connect(
 
 const reduxConnectedForm = reduxForm({
     form: 'RecipeForm',
-    initialValues: {
-        steps: [{}]
-    }
-
+    enableReinitialize: true,
+    keepDirtyOnReinitialize: true,
+    initialValues: { steps: [{}] }
 })(connectedForm)
 
 export { reduxConnectedForm as RecipeForm }

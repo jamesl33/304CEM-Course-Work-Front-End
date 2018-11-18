@@ -140,11 +140,46 @@ function unpublish(recipe) {
     }
 }
 
+function update(recipe) {
+    return dispatch => {
+        dispatch(request(recipe))
+
+        services.recipe.update(recipe)
+                .then(() => {
+                    dispatch(success())
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request(recipe) {
+        return {
+            type: constants.recipe.RECIPE_UPDATE_REQUEST,
+            payload: recipe
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_UPDATE_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_UPDATE_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     load,
     publish,
-    unpublish
+    unpublish,
+    update
 }
 
 export { recipe }

@@ -1,6 +1,7 @@
 /* eslint no-fallthrough: 0 */
 
 import { reducer as formReducer } from 'redux-form'
+import { constants } from '../../constants'
 
 const zxcvbn = require('zxcvbn')
 
@@ -19,6 +20,17 @@ const reducers = formReducer.plugin({
                     passwordStrength: zxcvbn(action.payload).score + 1
                 })
             }
+        default:
+            return state
+        }
+    },
+    RecipeForm: (state = {}, action) => {
+        switch (action.type) {
+        case constants.recipe.RECIPE_LOAD_SUCCESS:
+            return Object.assign({}, state, {
+                initial: action.payload,
+                values: action.payload
+            })
         default:
             return state
         }
