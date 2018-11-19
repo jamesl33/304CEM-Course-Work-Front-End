@@ -36,8 +36,8 @@ const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
 
 class RecipeForm extends React.Component {
     componentWillMount() {
-        if (this.props.id) {
-            this.props.editRecipe(this.props.id)
+        if (this.props.match) {
+            this.props.editRecipe(this.props.match.params.id)
         }
     }
 
@@ -59,7 +59,7 @@ class RecipeForm extends React.Component {
                             <label>Image</label>
                         </div>
                         <div className="col-80">
-                            <Field name="image" component={renderFileInput} validate={this.props.id ? undefined : required}/>
+                            <Field name="image" component={renderFileInput} validate={this.props.match && this.props.match.params.id ? undefined : required}/>
                         </div>
                     </div>
                     <div className="row">
@@ -87,13 +87,14 @@ class RecipeForm extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        {(this.props.id &&
+                        {(this.props.match && this.props.match.params.id &&
                           <div className="right-justify">
-                              <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onUpdate)}>Update</button>
+                              <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid} onClick={this.props.handleSubmit(this.props.onUpdate)}>Update</button>
+                              <button type="submit" disabled={this.props.submitting || this.props.togglingPublishedState || this.props.dirty} onClick={this.props.handleSubmit(this.props.onTogglePublish)}>{this.props.published ? 'Unpublish' : 'Publish'}</button>
                           </div>) ||
                          <div className="right-justify">
-                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onSave)}>Save</button>
-                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid || this.props.registering} onClick={this.props.handleSubmit(this.props.onPublish)}>Publish</button>
+                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid} onClick={this.props.handleSubmit(this.props.onSave)}>Save</button>
+                             <button type="submit" disabled={this.props.pristine || this.props.submitting || this.props.invalid} onClick={this.props.handleSubmit(this.props.onPublish)}>Publish</button>
                          </div>}
                     </div>
                     <div className="error">
@@ -106,7 +107,7 @@ class RecipeForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-
+    published: state.form.RecipeForm.published
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,6 +122,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onUpdate: (values) => {
         dispatch(actions.recipe.update(values))
+    },
+    onTogglePublish: (values) => {
+        dispatch(actions.recipe.togglePublished(values.id))
     }
 })
 

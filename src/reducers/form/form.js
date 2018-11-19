@@ -24,12 +24,73 @@ const reducers = formReducer.plugin({
             return state
         }
     },
-    RecipeForm: (state = {}, action) => {
+    RecipeForm: (state = { saving: false, editing: false, publishing: false, togglingPublishedState: false, updaing: false, loading: false }, action) => {
         switch (action.type) {
+        case constants.recipe.RECIPE_SAVE_REQUEST:
+            return Object.assign({}, state, {
+                saving: true
+            })
+        case constants.recipe.RECIPE_SAVE_SUCCESS:
+            return Object.assign({}, state, {
+                saving: false
+            })
+        case constants.recipe.RECIPE_SAVE_FAILURE:
+            return Object.assign({}, state, {
+                saving: false
+            })
+        case constants.recipe.RECIPE_EDIT_REQUEST:
+            return Object.assign({}, state, {
+                editing: true
+            })
         case constants.recipe.RECIPE_EDIT_SUCCESS:
             return Object.assign({}, state, {
-                initial: action.payload,
-                values: action.payload
+                initial: action.payload.recipe,
+                values: action.payload.recipe,
+                published: action.payload.published,
+                editing: false
+            })
+        case constants.recipe.RECIPE_EDIT_FAILURE:
+            return Object.assign({}, state, {
+                editing: false
+            })
+        case constants.recipe.RECIPE_PUBLISH_REQUEST:
+            return Object.assign({}, state, {
+                publishing: true
+            })
+        case constants.recipe.RECIPE_PUBLISH_SUCCESS:
+            return Object.assign({}, state, {
+                publishing: false
+            })
+        case constants.recipe.RECIPE_PUBLISH_FAILURE:
+            return Object.assign({}, state, {
+                publishing: false
+            })
+        case constants.recipe.RECIPE_TOGGLE_PUBLISHED_REQUEST:
+            return Object.assign({}, state, {
+                togglingPublishedState: true
+            })
+        case constants.recipe.RECIPE_TOGGLE_PUBLISHED_SUCCESS:
+            return Object.assign({}, state, {
+                togglingPublishedState: false,
+                published: !state.published
+            })
+        case constants.recipe.RECIPE_TOGGLE_PUBLISHED_FAILURE:
+            return Object.assign({}, state, {
+                togglingPublishedState: false
+            })
+        case constants.recipe.RECIPE_UPDATE_REQUEST:
+            return Object.assign({}, state, {
+                updating: true
+            })
+        case constants.recipe.RECIPE_UPDATE_SUCCESS:
+            return Object.assign({}, state, {
+                updating: false,
+                values: state.values,
+                initial: state.values
+            })
+        case constants.recipe.RECIPE_UPDATE_FAILURE:
+            return Object.assign({}, state, {
+                updating: false
             })
         default:
             return state

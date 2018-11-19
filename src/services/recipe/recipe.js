@@ -37,7 +37,7 @@ function save(recipe) {
 }
 
 function edit(id) {
-    return fetch(`${constants.api.url}/recipe/edit`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({id: id}) }))
+    return fetch(`${constants.api.url}/recipe/edit`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
@@ -49,8 +49,8 @@ function publish(recipe) {
         })
 }
 
-function unpublish(recipe) {
-    return fetch(`${constants.api.url}/recipe/unpublish`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
+function togglePublished(id) {
+    return fetch(`${constants.api.url}/recipe/publish/toggle`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({id: id}) }))
         .then(helpers.api.handleResponse)
 }
 
@@ -63,7 +63,7 @@ const recipe = {
     save,
     edit,
     publish,
-    unpublish,
+    togglePublished,
     update
 }
 
