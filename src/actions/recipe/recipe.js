@@ -15,10 +15,9 @@ function save(recipe) {
                 })
     }
 
-    function request(recipe) {
+    function request() {
         return {
-            type: constants.recipe.RECIPE_SAVE_REQUEST,
-            payload: recipe
+            type: constants.recipe.RECIPE_SAVE_REQUEST
         }
     }
 
@@ -28,17 +27,16 @@ function save(recipe) {
         }
     }
 
-    function failure(error) {
+    function failure() {
         return {
-            type: constants.recipe.RECIPE_SAVE_FAILURE,
-            payload: error
+            type: constants.recipe.RECIPE_SAVE_FAILURE
         }
     }
 }
 
 function edit(recipe) {
     return dispatch => {
-        dispatch(request(recipe))
+        dispatch(request())
 
         services.recipe.edit(recipe)
                 .then(recipe => {
@@ -49,10 +47,9 @@ function edit(recipe) {
                 })
     }
 
-    function request(recipe) {
+    function request() {
         return {
-            type: constants.recipe.RECIPE_EDIT_REQUEST,
-            payload: recipe
+            type: constants.recipe.RECIPE_EDIT_REQUEST
         }
     }
 
@@ -63,17 +60,16 @@ function edit(recipe) {
         }
     }
 
-    function failure(error) {
+    function failure() {
         return {
-            type: constants.recipe.RECIPE_EDIT_FAILURE,
-            payload: error
+            type: constants.recipe.RECIPE_EDIT_FAILURE
         }
     }
 }
 
 function publish(recipe) {
     return dispatch => {
-        dispatch(request(recipe))
+        dispatch(request())
 
         services.recipe.publish(recipe)
                 .then(recipe => {
@@ -85,10 +81,9 @@ function publish(recipe) {
                 })
     }
 
-    function request(recipe) {
+    function request() {
         return {
-            type: constants.recipe.RECIPE_PUBLISH_REQUEST,
-            payload: recipe
+            type: constants.recipe.RECIPE_PUBLISH_REQUEST
         }
     }
 
@@ -106,35 +101,32 @@ function publish(recipe) {
     }
 }
 
-function unpublish(recipe) {
+function togglePublished(id) {
     return dispatch => {
-        dispatch(request(recipe))
+        dispatch(request())
 
-        services.recipe.unpublish(recipe)
-                .then(() => {
-                    dispatch(success())
-                })
+        services.recipe.togglePublished(id)
+                .then(dispatch(success()))
                 .catch(error => {
                     dispatch(failure(error))
                 })
     }
 
-    function request(recipe) {
+    function request() {
         return {
-            type: constants.recipe.RECIPE_UNPUBLISH_REQUEST,
-            payload: recipe
+            type: constants.recipe.RECIPE_TOGGLE_PUBLISHED_REQUEST
         }
     }
 
     function success() {
         return {
-            type: constants.recipe.RECIPE_UNPUBLISH_SUCCESS
+            type: constants.recipe.RECIPE_TOGGLE_PUBLISHED_SUCCESS
         }
     }
 
     function failure(error) {
         return {
-            type: constants.recipe.RECIPE_UNPUBLISH_FAILURE,
+            type: constants.recipe.RECIPE_TOGGLE_PUBLISHED_FAILURE,
             payload: error
         }
     }
@@ -142,21 +134,18 @@ function unpublish(recipe) {
 
 function update(recipe) {
     return dispatch => {
-        dispatch(request(recipe))
+        dispatch(request())
 
         services.recipe.update(recipe)
-                .then(() => {
-                    dispatch(success())
-                })
+                .then(dispatch(success()))
                 .catch(error => {
                     dispatch(failure(error))
                 })
     }
 
-    function request(recipe) {
+    function request() {
         return {
-            type: constants.recipe.RECIPE_UPDATE_REQUEST,
-            payload: recipe
+            type: constants.recipe.RECIPE_UPDATE_REQUEST
         }
     }
 
@@ -178,7 +167,7 @@ const recipe = {
     save,
     edit,
     publish,
-    unpublish,
+    togglePublished,
     update
 }
 

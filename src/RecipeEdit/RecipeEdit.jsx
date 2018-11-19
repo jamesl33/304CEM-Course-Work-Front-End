@@ -6,7 +6,7 @@ class RecipeEdit extends React.Component {
     render() {
         return (
             <>
-                <RecipeForm id={this.props.match.params.id}/>
+                <RecipeForm match={this.props.match}/>
             </>
         )
     }
