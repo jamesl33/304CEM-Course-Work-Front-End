@@ -30,7 +30,7 @@ class Recipe extends React.Component {
                                 {(step.image &&
                                   <>
                                       <div className="step-image left-justify">
-                                          <img src={constants.api.url + step.image.replace(/public/, '')}/>
+                                          <img src={constants.api.url + step.image.replace(/public/, '')} alt="Step preview"/>
                                       </div>
                                       <div className="step-description right-justify">
                                           <p>{step.description}</p>
@@ -46,7 +46,7 @@ class Recipe extends React.Component {
                 <ul className="comments">
                     {this.props.recipe.comments && JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
                         <li key={commentIndex}>
-                            /* TODO - Handle recipe comments */
+                            {/* TODO - Handle recipe comments */}
                         </li>
                     )}
                 </ul>

@@ -64,13 +64,25 @@ function load(id) {
         .then(helpers.api.handleResponse)
 }
 
+function recent() {
+    return fetch(`${constants.api.url}/recipe/recent`, Object.assign({}, constants.api.requests.json))
+        .then(helpers.api.handleResponse)
+}
+
+function top() {
+    return fetch(`${constants.api.url}/recipe/top`, Object.assign({}, constants.api.requests.json))
+        .then(helpers.api.handleResponse)
+}
+
 const recipe = {
     save,
     edit,
     publish,
     togglePublished,
     update,
-    load
+    load,
+    recent,
+    top
 }
 
 export { recipe }

@@ -197,13 +197,83 @@ function load(recipe) {
     }
 }
 
+function recent() {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.recent()
+                .then(recipes => {
+                    dispatch(success(recipes))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_RECENT_REQUEST
+        }
+    }
+
+    function success(recipes) {
+        return {
+            type: constants.recipe.RECIPE_RECENT_SUCCESS,
+            payload: recipes
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_RECENT_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function top() {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.top()
+                .then(recipes => {
+                    dispatch(success(recipes))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_TOP_REQUEST
+        }
+    }
+
+    function success(recipes) {
+        return {
+            type: constants.recipe.RECIPE_TOP_SUCCESS,
+            payload: recipes
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_TOP_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     edit,
     publish,
     togglePublished,
     update,
-    load
+    load,
+    recent,
+    top
 }
 
 export { recipe }
