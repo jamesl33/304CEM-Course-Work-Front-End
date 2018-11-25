@@ -59,12 +59,18 @@ function update(recipe) {
         .then(helpers.api.handleResponse)
 }
 
+function load(id) {
+    return fetch(`${constants.api.url}/recipe/load`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
 const recipe = {
     save,
     edit,
     publish,
     togglePublished,
-    update
+    update,
+    load
 }
 
 export { recipe }

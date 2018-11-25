@@ -163,12 +163,47 @@ function update(recipe) {
     }
 }
 
+function load(recipe) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.load(recipe)
+                .then(recipe => {
+                    dispatch(success(recipe))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_LOAD_REQUEST
+        }
+    }
+
+    function success(recipe) {
+        return {
+            type: constants.recipe.RECIPE_LOAD_SUCCESS,
+            payload: recipe
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_LOAD_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     edit,
     publish,
     togglePublished,
-    update
+    update,
+    load
 }
 
 export { recipe }
