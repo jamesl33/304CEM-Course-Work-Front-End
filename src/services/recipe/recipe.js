@@ -59,12 +59,48 @@ function update(recipe) {
         .then(helpers.api.handleResponse)
 }
 
+function load(id) {
+    return fetch(`${constants.api.url}/recipe/load`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+function recent() {
+    return fetch(`${constants.api.url}/recipe/recent`, Object.assign({}, constants.api.requests.json))
+        .then(helpers.api.handleResponse)
+}
+
+function top() {
+    return fetch(`${constants.api.url}/recipe/top`, Object.assign({}, constants.api.requests.json))
+        .then(helpers.api.handleResponse)
+}
+
+function like(id) {
+    return fetch(`${constants.api.url}/recipe/like`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+function unlike(id) {
+    return fetch(`${constants.api.url}/recipe/unlike`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+function report(id) {
+    return fetch(`${constants.api.url}/recipe/report`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
 const recipe = {
     save,
     edit,
     publish,
     togglePublished,
-    update
+    update,
+    load,
+    recent,
+    top,
+    like,
+    unlike,
+    report
 }
 
 export { recipe }

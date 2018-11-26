@@ -1,6 +1,8 @@
+import { constants } from '../../constants'
+
 const toggleMenu = () => {
     return {
-        type: 'TOGGLE_MENU'
+        type: constants.header.HEADER_TOGGLE_MENU
     }
 }
 

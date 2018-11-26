@@ -106,7 +106,9 @@ function togglePublished(id) {
         dispatch(request())
 
         services.recipe.togglePublished(id)
-                .then(dispatch(success()))
+                .then(() => {
+                    dispatch(success())
+                })
                 .catch(error => {
                     dispatch(failure(error))
                 })
@@ -163,12 +165,219 @@ function update(recipe) {
     }
 }
 
+function load(recipe) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.load(recipe)
+                .then(recipe => {
+                    dispatch(success(recipe))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_LOAD_REQUEST
+        }
+    }
+
+    function success(recipe) {
+        return {
+            type: constants.recipe.RECIPE_LOAD_SUCCESS,
+            payload: recipe
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_LOAD_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function recent() {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.recent()
+                .then(recipes => {
+                    dispatch(success(recipes))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_RECENT_REQUEST
+        }
+    }
+
+    function success(recipes) {
+        return {
+            type: constants.recipe.RECIPE_RECENT_SUCCESS,
+            payload: recipes
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_RECENT_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function top() {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.top()
+                .then(recipes => {
+                    dispatch(success(recipes))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_TOP_REQUEST
+        }
+    }
+
+    function success(recipes) {
+        return {
+            type: constants.recipe.RECIPE_TOP_SUCCESS,
+            payload: recipes
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_TOP_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function like(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.like(id)
+                .then(() => {
+                    dispatch(success())
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_LIKE_REQUEST
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_LIKE_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_LIKE_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function unlike(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.unlike(id)
+                .then(() => {
+                    dispatch(success())
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_UNLIKE_REQUEST
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_UNLIKE_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_UNLIKE_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function report(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.report(id)
+                .then(() => {
+                    dispatch(success())
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_REPORT_REQUEST
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_REPORT_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_REPORT_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     edit,
     publish,
     togglePublished,
-    update
+    update,
+    load,
+    recent,
+    top,
+    like,
+    unlike,
+    report
 }
 
 export { recipe }

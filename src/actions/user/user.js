@@ -7,13 +7,13 @@ function login(user) {
         dispatch(request(user))
 
         services.user.login(user)
-                   .then(user => {
-                       dispatch(success(user))
-                       helpers.history.push('/')
-                   })
-                   .catch(error => {
-                       dispatch(failure(error))
-                   })
+                .then(user => {
+                    dispatch(success(user))
+                    helpers.history.push('/')
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
     }
 
     function request(user) {
@@ -43,13 +43,13 @@ function register(user) {
         dispatch(request(user))
 
         services.user.register(user)
-                   .then(user => {
-                       dispatch(success(user))
-                       helpers.history.push('/')
-                   })
-                   .catch(error => {
-                       dispatch(failure(error))
-                   })
+                .then(user => {
+                    dispatch(success(user))
+                    helpers.history.push('/')
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
     }
 
     function request(user) {
