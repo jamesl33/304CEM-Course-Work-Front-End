@@ -106,7 +106,9 @@ function togglePublished(id) {
         dispatch(request())
 
         services.recipe.togglePublished(id)
-                .then(dispatch(success()))
+                .then(() => {
+                    dispatch(success())
+                })
                 .catch(error => {
                     dispatch(failure(error))
                 })
@@ -137,7 +139,9 @@ function update(recipe) {
         dispatch(request())
 
         services.recipe.update(recipe)
-                .then(dispatch(success()))
+                .then(() => {
+                    dispatch(success())
+                })
                 .catch(error => {
                     dispatch(failure(error))
                 })
@@ -270,7 +274,9 @@ function like(id) {
         dispatch(request())
 
         services.recipe.like(id)
-                .then(dispatch(success()))
+                .then(() => {
+                    dispatch(success())
+                })
                 .catch(error => {
                     dispatch(failure(error))
                 })
@@ -301,7 +307,9 @@ function unlike(id) {
         dispatch(request())
 
         services.recipe.unlike(id)
-                .then(dispatch(success()))
+                .then(() => {
+                    dispatch(success())
+                })
                 .catch(error => {
                     dispatch(failure(error))
                 })
@@ -332,7 +340,9 @@ function report(id) {
         dispatch(request())
 
         services.recipe.report(id)
-                .then(dispatch(success()))
+                .then(() => {
+                    dispatch(success())
+                })
                 .catch(error => {
                     dispatch(failure(error))
                 })
