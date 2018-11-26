@@ -265,6 +265,99 @@ function top() {
     }
 }
 
+function like(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.like(id)
+                .then(dispatch(success()))
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_LIKE_REQUEST
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_LIKE_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_LIKE_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function unlike(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.unlike(id)
+                .then(dispatch(success()))
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_UNLIKE_REQUEST
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_UNLIKE_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_UNLIKE_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function report(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.report(id)
+                .then(dispatch(success()))
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_REPORT_REQUEST
+        }
+    }
+
+    function success() {
+        return {
+            type: constants.recipe.RECIPE_REPORT_SUCCESS
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_REPORT_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     edit,
@@ -273,7 +366,10 @@ const recipe = {
     update,
     load,
     recent,
-    top
+    top,
+    like,
+    unlike,
+    report
 }
 
 export { recipe }

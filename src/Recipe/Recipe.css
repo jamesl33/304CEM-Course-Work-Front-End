@@ -20,6 +20,7 @@
 }
 
 .recipe .meta h1 {
+    text-decoration: underline;
     padding-left: 0.5em;
     font-size: 1.5em;
 }
@@ -64,6 +65,17 @@
 
 .recipe ul li {
     list-style-type: none;
+}
+
+.recipe .user-actions {
+    float: right;
+    padding-top: 0.5em;
+}
+
+.recipe .user-actions button {
+    padding: 0.5em;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
 }
 
 @media screen and (max-width: 600px) {

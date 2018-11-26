@@ -43,6 +43,18 @@ class Recipe extends React.Component {
                         </li>
                     )}
                 </ul>
+                <div className="user-actions">
+                    {(!this.props.recipe.liked &&
+                     <button onClick={() => this.props.likeRecipe(this.props.match.params.id)} disabled={this.props.recipe.liked || this.props.recipe.liking}>
+                         <i className="fa fa-thumbs-up"></i>
+                     </button>) ||
+                     <button onClick={() => this.props.unlikeRecipe(this.props.match.params.id)} disabled={this.props.recipe.unliking}>
+                         <i className="fa fa-thumbs-down"></i>
+                     </button>}
+                    <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
+                        <i className="fa fa-ban"></i>
+                    </button>
+                </div>
                 <ul className="comments">
                     {this.props.recipe.comments && JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
                         <li key={commentIndex}>
@@ -62,6 +74,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     loadRecipe: (id) => {
         dispatch(actions.recipe.load(id))
+    },
+    likeRecipe: (id) => {
+        dispatch(actions.recipe.like(id))
+    },
+    unlikeRecipe: (id) => {
+        dispatch(actions.recipe.unlike(id))
+    },
+    reportRecipe: (id) => {
+        dispatch(actions.recipe.report(id))
     }
 })
 

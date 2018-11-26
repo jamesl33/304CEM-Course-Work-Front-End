@@ -2,7 +2,7 @@
 
 import { constants } from '../../constants'
 
-const recipe = (state = { loading: false, recent: [], top: [] }, action) => {
+const recipe = (state = { loading: false, recent: [], top: [], liking: false, unliking: false, reporting: false }, action) => {
     switch (action.type) {
     case constants.recipe.RECIPE_LOAD_REQUEST:
         return Object.assign({}, state, {
@@ -41,6 +41,47 @@ const recipe = (state = { loading: false, recent: [], top: [] }, action) => {
     case constants.recipe.RECIPE_TOP_FAILURE:
         return Object.assign({}, state, {
             loading: false
+        })
+    case constants.recipe.RECIPE_LIKE_REQUEST:
+        return Object.assign({}, state, {
+            liking: true
+        })
+    case constants.recipe.RECIPE_LIKE_SUCCESS:
+        return Object.assign({}, state, {
+            liking: false,
+            liked: true
+        })
+    case constants.recipe.RECIPE_LIKE_FAILURE:
+        return Object.assign({}, state, {
+            liking: false
+        })
+    case constants.recipe.RECIPE_UNLIKE_REQUEST:
+        return Object.assign({}, state, {
+            unliking: true
+        })
+    case constants.recipe.RECIPE_UNLIKE_SUCCESS:
+        return Object.assign({}, state, {
+            unliking: false,
+            liked: false
+        })
+    case constants.recipe.RECIPE_UNLIKE_FAILURE:
+        console.log(state)
+
+        return Object.assign({}, state, {
+            unliking: false
+        })
+    case constants.recipe.RECIPE_REPORT_REQUEST:
+        return Object.assign({}, state, {
+            reporting: true
+        })
+    case constants.recipe.RECIPE_REPORT_SUCCESS:
+        return Object.assign({}, state, {
+            reporting: false,
+            reported: true
+        })
+    case constants.recipe.RECIPE_REPORT_FAILURE:
+        return Object.assign({}, state, {
+            reporting: false
         })
     default:
         return state
