@@ -46,7 +46,7 @@ class Recipe extends React.Component {
                 </ul>
                 <div style={{ display: 'flex', width: '100%' }}>
                     <div className="recipe-stats">
-                        <p>{`${this.props.recipe.views} Views`}</p>
+                        <p>{`${this.props.recipe.views} Views, ${this.props.recipe.likes} Likes`}</p>
                     </div>
                     <div className="user-actions">
                         <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
