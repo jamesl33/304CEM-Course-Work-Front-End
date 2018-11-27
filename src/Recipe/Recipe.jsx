@@ -67,7 +67,7 @@ class Recipe extends React.Component {
                      {this.props.recipe.comments && JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
                          <li key={commentIndex}>
                              <div className="comment">
-                                 <p>{`${comment.createdBy}: ${comment.comment}`}</p>
+                                 <pre>{`${comment.createdBy}:\n${comment.comment}`}</pre>
                              </div>
                          </li>
                      )}
