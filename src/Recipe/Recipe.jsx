@@ -61,13 +61,17 @@ class Recipe extends React.Component {
                          </button>}
                     </div>
                 </div>
-                <ul className="comments">
-                    {this.props.recipe.comments && JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
-                        <li key={commentIndex}>
-                            {/* TODO - Handle recipe comments */}
-                        </li>
-                    )}
-                </ul>
+                {this.props.recipe.comments !== "[]" &&
+                 <ul className="comments">
+                     <h1>Comments:</h1>
+                     {this.props.recipe.comments && JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
+                         <li key={commentIndex}>
+                             <div className="comment">
+                                 <p>{`${comment.createdBy}: ${comment.comment}`}</p>
+                             </div>
+                         </li>
+                     )}
+                 </ul>}
                 <CommentBox recipeId={this.props.match.params.id}/>
             </div>
         )

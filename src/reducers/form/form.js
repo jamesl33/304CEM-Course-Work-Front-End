@@ -104,7 +104,9 @@ const reducers = formReducer.plugin({
             })
         case constants.comments.COMMENTS_COMMENT_SUCCESS:
             return Object.assign({}, state, {
-                commenting: false
+                commenting: false,
+                values: {},
+                initial: {}
             })
         case constants.comments.COMMENTS_COMMENT_FAILURE:
             return Object.assign({}, state, {
@@ -116,7 +118,9 @@ const reducers = formReducer.plugin({
             })
         case constants.comments.COMMENTS_REPLY_SUCCESS:
             return Object.assign({}, state, {
-                replying: false
+                replying: false,
+                values: {},
+                initial: {}
             })
         case constants.comments.COMMENTS_REPLY_FAILURE:
             return Object.assign({}, state, {

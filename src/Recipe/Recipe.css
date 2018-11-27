@@ -85,6 +85,23 @@
     margin-left: 0.25em;
 }
 
+.recipe .comments {
+    border: 1px solid #ccc;
+    margin-top: 1em;
+}
+
+.recipe .comments h1 {
+    font-size: 1em;
+    margin-top: 0.2em;
+    margin-left: 0.3em;
+}
+
+.recipe .comment {
+    border: 1px solid #ccc;
+    margin: 0.5em;
+    padding: 0.25em;
+}
+
 @media screen and (max-width: 600px) {
     .recipe {
         padding-top: 2.5em;

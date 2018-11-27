@@ -83,6 +83,19 @@ const recipe = (state = { loading: false, recent: [], top: [], liking: false, un
         return Object.assign({}, state, {
             reporting: false
         })
+    case constants.comments.COMMENTS_COMMENT_SUCCESS:
+        // Until the user refreshes the page show a version of thier comment
+        let newComments = JSON.parse(state.comments)
+
+        newComments.push({
+            createdBy: JSON.parse(localStorage.getItem('user')).name,
+            comment: action.payload.comment,
+            createdOn: Math.floor(new Date() / 1000)
+        })
+
+        return Object.assign({}, state, {
+            comments: JSON.stringify(newComments)
+        })
     default:
         return state
     }

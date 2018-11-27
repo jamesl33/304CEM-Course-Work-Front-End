@@ -1,6 +1,5 @@
 import { constants } from '../../constants'
 import { services } from '../../services'
-import { helpers } from '../../helpers'
 
 function comment(values) {
     return dispatch => {
@@ -8,7 +7,7 @@ function comment(values) {
 
         services.comments.comment(values)
                 .then(() => {
-                    dispatch(success())
+                    dispatch(success(values))
                 })
                 .catch(error => {
                     dispatch(failure(error))
@@ -21,9 +20,10 @@ function comment(values) {
         }
     }
 
-    function success() {
+    function success(values) {
         return {
-            type: constants.comments.COMMENTS_COMMENT_SUCCESS
+            type: constants.comments.COMMENTS_COMMENT_SUCCESS,
+            payload: values
         }
     }
 

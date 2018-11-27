@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Field, FieldArray, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
 import { renderTextarea } from '../fields.jsx'
 import { required } from '../validation.js'
 import { actions } from '../../../actions'
@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onComment: (values) => {
         dispatch(actions.comments.comment(values))
+        dispatch(reset('CommentBox')) // Once the user has commented reset the form
     }
 })
 
