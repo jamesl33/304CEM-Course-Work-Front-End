@@ -1,7 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { constants } from '../../constants'
-import { actions } from '../../actions'
 import './RecipeList.css'
 
 class RecipeList extends React.Component {

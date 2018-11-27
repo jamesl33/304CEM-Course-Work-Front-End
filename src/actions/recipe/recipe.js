@@ -366,6 +366,40 @@ function report(id) {
     }
 }
 
+function search(query) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.search(query)
+                .then(results => {
+                    dispatch(success(results))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_SEARCH_REQUEST
+        }
+    }
+
+    function success(results) {
+        return {
+            type: constants.recipe.RECIPE_SEARCH_SUCCESS,
+            payload: results
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_SEARCH_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     edit,
@@ -377,7 +411,8 @@ const recipe = {
     top,
     like,
     unlike,
-    report
+    report,
+    search
 }
 
 export { recipe }

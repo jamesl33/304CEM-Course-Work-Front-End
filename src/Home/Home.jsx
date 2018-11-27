@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { RecipeList } from '../components/RecipeList'
-import { constants } from '../constants'
+import { RecipeSearch } from '../components/forms/RecipeSearch'
 import { actions } from '../actions'
 import './Home.css'
 
@@ -14,6 +14,7 @@ class Home extends React.Component {
     render() {
         return (
             <>
+                <RecipeSearch/>
                 <div className="recent-recipes">
                     <h1 className="headings">Recent</h1>
                     <RecipeList recipeList={this.props.recent}/>

@@ -89,6 +89,11 @@ function report(id) {
         .then(helpers.api.handleResponse)
 }
 
+function search(query) {
+    return fetch(`${constants.api.url}/recipe/search`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ query: query }) }))
+        .then(helpers.api.handleResponse)
+}
+
 const recipe = {
     save,
     edit,
@@ -100,7 +105,8 @@ const recipe = {
     top,
     like,
     unlike,
-    report
+    report,
+    search
 }
 
 export { recipe }

@@ -125,6 +125,25 @@ const reducers = formReducer.plugin({
         default:
             return state
         }
+    },
+    RecipeSearch: (state = { results: undefined, searching: false }, action) => {
+        switch (action.type) {
+        case constants.recipe.RECIPE_SEARCH_REQUEST:
+            return Object.assign({}, state, {
+                searching: true
+            })
+        case constants.recipe.RECIPE_SEARCH_SUCCESS:
+            return Object.assign({}, state, {
+                results: action.payload,
+                searching: false
+            })
+        case constants.recipe.RECIPE_SEARCH_FAILURE:
+            return Object.assign({}, state, {
+                searching: false
+            })
+        default:
+            return state
+        }
     }
 })
 
