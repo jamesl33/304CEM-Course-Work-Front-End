@@ -68,17 +68,9 @@ function reply(values) {
     }
 }
 
-function setRecipeId(id) {
-    return {
-        type: constants.comments.COMMENTS_SET_RECIPE_ID,
-        payload: id
-    }
-}
-
 const comments = {
     comment,
-    reply,
-    setRecipeId
+    reply
 }
 
 export { comments }

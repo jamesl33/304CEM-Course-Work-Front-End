@@ -88,9 +88,11 @@ const recipe = (state = { loading: false, recent: [], top: [], liking: false, un
         let newComments = JSON.parse(state.comments)
 
         newComments.push({
-            createdBy: JSON.parse(localStorage.getItem('user')).name,
+            createdBy: JSON.parse(localStorage.getItem('user')).name, // This shouldn't fail because the user can't comment without being logged in
             comment: action.payload.comment,
-            createdOn: Math.floor(new Date() / 1000)
+            createdOn: Math.floor(new Date() / 1000),
+            recipeId: action.payload.recipeId,
+            parent: null
         })
 
         return Object.assign({}, state, {

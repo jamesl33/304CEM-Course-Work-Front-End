@@ -104,9 +104,7 @@ const reducers = formReducer.plugin({
             })
         case constants.comments.COMMENTS_COMMENT_SUCCESS:
             return Object.assign({}, state, {
-                commenting: false,
-                values: {},
-                initial: {}
+                commenting: false
             })
         case constants.comments.COMMENTS_COMMENT_FAILURE:
             return Object.assign({}, state, {
@@ -118,22 +116,11 @@ const reducers = formReducer.plugin({
             })
         case constants.comments.COMMENTS_REPLY_SUCCESS:
             return Object.assign({}, state, {
-                replying: false,
-                values: {},
-                initial: {}
+                replying: false
             })
         case constants.comments.COMMENTS_REPLY_FAILURE:
             return Object.assign({}, state, {
                 replying: false
-            })
-        case constants.comments.COMMENTS_SET_RECIPE_ID:
-            return Object.assign({}, state, {
-                values: Object.assign({}, state.values, {
-                    recipeId: action.payload
-                }),
-                initial: Object.assign({}, state.initial, {
-                    recipeId: action.payload
-                })
             })
         default:
             return state

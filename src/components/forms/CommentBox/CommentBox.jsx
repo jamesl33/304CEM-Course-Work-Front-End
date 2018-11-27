@@ -7,10 +7,6 @@ import { actions } from '../../../actions'
 import './CommentBox.css'
 
 class CommentBox extends React.Component {
-    componentWillMount() {
-        this.props.setRecipeId(this.props.recipeId)
-    }
-
     render() {
         return (
             <div className="comment-box">
@@ -19,7 +15,7 @@ class CommentBox extends React.Component {
                         <Field name="comment" component={renderTextarea} validate={required}/>
                     </div>
                     <div className="right-justify">
-                        <button type="submit" onClick={this.props.handleSubmit(this.props.onComment)} disabled={this.props.commenting || this.props.invalid}>Comment</button>
+                        <button type="submit" onClick={this.props.handleSubmit(data => this.props.onComment(data, this.props.recipeId))} disabled={this.props.commenting || this.props.invalid}>Comment</button>
                     </div>
                 </form>
             </div>
@@ -28,15 +24,14 @@ class CommentBox extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-
+    commenting: state.form.CommentBox.commenting
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    setRecipeId: (id) => {
-        dispatch(actions.comments.setRecipeId(id))
-    },
-    onComment: (values) => {
-        dispatch(actions.comments.comment(values))
+    onComment: (values, id) => {
+        dispatch(actions.comments.comment(Object.assign({}, values, {
+            recipeId: id
+        })))
         dispatch(reset('CommentBox')) // Once the user has commented reset the form
     }
 })
