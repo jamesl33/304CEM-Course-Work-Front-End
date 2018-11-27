@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { constants } from '../constants'
 import { actions } from '../actions'
+import { CommentBox } from '../components/forms/CommentBox'
 import './Recipe.css'
 
 class Recipe extends React.Component {
@@ -67,6 +68,7 @@ class Recipe extends React.Component {
                         </li>
                     )}
                 </ul>
+                <CommentBox recipeId={this.props.match.params.id}/>
             </div>
         )
     }

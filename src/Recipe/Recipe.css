@@ -69,7 +69,7 @@
 
 .recipe .recipe-stats {
     float: left;
-    padding-top: 0.75em;
+    padding-top: 1.35em;
     width: 50%;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .recipe .user-actions button {
-    margin-top: 0.25em;
+    margin-top: 1em;
     float: right;
     padding: 0.5em;
     margin-left: 0.25em;

@@ -95,6 +95,45 @@ const reducers = formReducer.plugin({
         default:
             return state
         }
+    },
+    CommentBox: (state = { commenting: false, replying: false }, action) => {
+        switch (action.type) {
+        case constants.comments.COMMENTS_COMMENT_REQUEST:
+            return Object.assign({}, state, {
+                commenting: true
+            })
+        case constants.comments.COMMENTS_COMMENT_SUCCESS:
+            return Object.assign({}, state, {
+                commenting: false
+            })
+        case constants.comments.COMMENTS_COMMENT_FAILURE:
+            return Object.assign({}, state, {
+                commenting: false
+            })
+        case constants.comments.COMMENTS_REPLY_REQUEST:
+            return Object.assign({}, state, {
+                replying: true
+            })
+        case constants.comments.COMMENTS_REPLY_SUCCESS:
+            return Object.assign({}, state, {
+                replying: false
+            })
+        case constants.comments.COMMENTS_REPLY_FAILURE:
+            return Object.assign({}, state, {
+                replying: false
+            })
+        case constants.comments.COMMENTS_SET_RECIPE_ID:
+            return Object.assign({}, state, {
+                values: Object.assign({}, state.values, {
+                    recipeId: action.payload
+                }),
+                initial: Object.assign({}, state.initial, {
+                    recipeId: action.payload
+                })
+            })
+        default:
+            return state
+        }
     }
 })
 
