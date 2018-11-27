@@ -67,15 +67,22 @@
     list-style-type: none;
 }
 
+.recipe .recipe-stats {
+    float: left;
+    padding-top: 0.75em;
+    width: 50%;
+}
+
 .recipe .user-actions {
     float: right;
-    padding-top: 0.5em;
+    width: 50%;
 }
 
 .recipe .user-actions button {
+    margin-top: 0.25em;
+    float: right;
     padding: 0.5em;
     margin-left: 0.25em;
-    margin-right: 0.25em;
 }
 
 @media screen and (max-width: 600px) {
