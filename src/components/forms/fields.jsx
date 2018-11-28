@@ -16,7 +16,7 @@ const renderTextarea = ({input, placeholder, rows, meta: { touched, error, warni
 
 const renderFileInput = (field) => {
     delete field.input.value
-    return <input type="file" {...field.input} />
+    return <input type="file" accept="image/*" {...field.input} />
 }
 
 export { renderInput, renderTextarea, renderFileInput }
