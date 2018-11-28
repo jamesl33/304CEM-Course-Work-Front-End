@@ -49,7 +49,8 @@ const recipe = (state = { loading: false, recent: [], top: [], liking: false, un
     case constants.recipe.RECIPE_LIKE_SUCCESS:
         return Object.assign({}, state, {
             liking: false,
-            liked: true
+            liked: true,
+            likes: state.likes + 1
         })
     case constants.recipe.RECIPE_LIKE_FAILURE:
         return Object.assign({}, state, {
@@ -62,7 +63,8 @@ const recipe = (state = { loading: false, recent: [], top: [], liking: false, un
     case constants.recipe.RECIPE_UNLIKE_SUCCESS:
         return Object.assign({}, state, {
             unliking: false,
-            liked: false
+            liked: false,
+            likes: state.likes - 1
         })
     case constants.recipe.RECIPE_UNLIKE_FAILURE:
         console.log(state)
