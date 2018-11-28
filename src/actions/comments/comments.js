@@ -35,42 +35,8 @@ function comment(values) {
     }
 }
 
-function reply(values) {
-    return dispatch => {
-        dispatch(request())
-
-        services.comments.reply(values)
-                .then(() => {
-                    dispatch(success())
-                })
-                .catch(error => {
-                    dispatch(failure(error))
-                })
-    }
-
-    function request() {
-        return {
-            type: constants.comments.COMMENTS_REPLY_REQUEST
-        }
-    }
-
-    function success() {
-        return {
-            type: constants.comments.COMMENTS_REPLY_SUCCESS
-        }
-    }
-
-    function failure(error) {
-        return {
-            type: constants.comments.COMMENTS_REPLY_FAILURE,
-            payload: error
-        }
-    }
-}
-
 const comments = {
-    comment,
-    reply
+    comment
 }
 
 export { comments }

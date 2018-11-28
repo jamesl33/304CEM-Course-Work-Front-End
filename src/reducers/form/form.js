@@ -96,7 +96,7 @@ const reducers = formReducer.plugin({
             return state
         }
     },
-    CommentBox: (state = { commenting: false, replying: false }, action) => {
+    CommentBox: (state = { commenting: false }, action) => {
         switch (action.type) {
         case constants.comments.COMMENTS_COMMENT_REQUEST:
             return Object.assign({}, state, {
@@ -109,18 +109,6 @@ const reducers = formReducer.plugin({
         case constants.comments.COMMENTS_COMMENT_FAILURE:
             return Object.assign({}, state, {
                 commenting: false
-            })
-        case constants.comments.COMMENTS_REPLY_REQUEST:
-            return Object.assign({}, state, {
-                replying: true
-            })
-        case constants.comments.COMMENTS_REPLY_SUCCESS:
-            return Object.assign({}, state, {
-                replying: false
-            })
-        case constants.comments.COMMENTS_REPLY_FAILURE:
-            return Object.assign({}, state, {
-                replying: false
             })
         default:
             return state
