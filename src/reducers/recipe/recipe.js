@@ -83,6 +83,32 @@ const recipe = (state = { loading: false, recent: [], top: [], liking: false, un
         return Object.assign({}, state, {
             reporting: false
         })
+    case constants.recipe.RECIPE_GET_USER_RECIPES_REQUEST:
+        return Object.assign({}, state, {
+            loading: true
+        })
+    case constants.recipe.RECIPE_GET_USER_RECIPES_SUCCESS:
+        return Object.assign({}, state, {
+            loading: false,
+            userRecipes: action.payload
+        })
+    case constants.recipe.RECIPE_GET_USER_RECIPES_FAILURE:
+        return Object.assign({}, state, {
+            loading: false
+        })
+    case constants.recipe.RECIPE_GET_LIKED_RECIPES_REQUEST:
+        return Object.assign({}, state, {
+            loading: true
+        })
+    case constants.recipe.RECIPE_GET_LIKED_RECIPES_SUCCESS:
+        return Object.assign({}, state, {
+            loading: false,
+            likedRecipes: action.payload
+        })
+    case constants.recipe.RECIPE_GET_LIKED_RECIPES_FAILURE:
+        return Object.assign({}, state, {
+            loading: false
+        })
     case constants.comments.COMMENTS_COMMENT_SUCCESS:
         // Until the user refreshes the page show a version of thier comment
         let newComments = JSON.parse(state.comments)

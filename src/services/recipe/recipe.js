@@ -94,6 +94,16 @@ function search(query) {
         .then(helpers.api.handleResponse)
 }
 
+function userRecipes(id) {
+    return fetch(`${constants.api.url}/recipe/user`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+function likedRecipes(id) {
+    return fetch(`${constants.api.url}/recipe/liked`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
 const recipe = {
     save,
     edit,
@@ -106,7 +116,9 @@ const recipe = {
     like,
     unlike,
     report,
-    search
+    search,
+    userRecipes,
+    likedRecipes
 }
 
 export { recipe }

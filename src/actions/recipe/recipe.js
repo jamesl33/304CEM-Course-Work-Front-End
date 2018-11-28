@@ -400,6 +400,74 @@ function search(query) {
     }
 }
 
+function userRecipes(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.userRecipes(id)
+                .then(results => {
+                    dispatch(success(results))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_GET_USER_RECIPES_REQUEST
+        }
+    }
+
+    function success(results) {
+        return {
+            type: constants.recipe.RECIPE_GET_USER_RECIPES_SUCCESS,
+            payload: results
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_GET_USER_RECIPES_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function likedRecipes(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.recipe.likedRecipes(id)
+                .then(results => {
+                    dispatch(success(results))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.recipe.RECIPE_GET_LIKED_RECIPES_REQUEST
+        }
+    }
+
+    function success(results) {
+        return {
+            type: constants.recipe.RECIPE_GET_LIKED_RECIPES_SUCCESS,
+            payload: results
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.recipe.RECIPE_GET_LIKED_RECIPES_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const recipe = {
     save,
     edit,
@@ -412,7 +480,9 @@ const recipe = {
     like,
     unlike,
     report,
-    search
+    search,
+    userRecipes,
+    likedRecipes
 }
 
 export { recipe }
