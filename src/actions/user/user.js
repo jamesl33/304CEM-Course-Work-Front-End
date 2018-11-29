@@ -18,21 +18,21 @@ function login(user) {
 
     function request(user) {
         return {
-            type: constants.user.LOGIN_REQUEST,
+            type: constants.user.USER_LOGIN_REQUEST,
             payload: user
         }
     }
 
     function success(user) {
         return {
-            type: constants.user.LOGIN_SUCCESS,
+            type: constants.user.USER_LOGIN_SUCCESS,
             payload: user
         }
     }
 
     function failure(error) {
         return {
-            type: constants.user.LOGIN_FAILURE,
+            type: constants.user.USER_LOGIN_FAILURE,
             payload: error
         }
     }
@@ -54,21 +54,21 @@ function register(user) {
 
     function request(user) {
         return {
-            type: constants.user.REGISTER_REQUEST,
+            type: constants.user.USER_REGISTER_REQUEST,
             payload: user
         }
     }
 
     function success(user) {
         return {
-            type: constants.user.REGISTER_SUCCESS,
+            type: constants.user.USER_REGISTER_SUCCESS,
             payload: user
         }
     }
 
     function failure(error) {
         return {
-            type: constants.user.REGISTER_FAILURE,
+            type: constants.user.USER_REGISTER_FAILURE,
             payload: error
         }
     }
@@ -83,14 +83,14 @@ function logout(user) {
 
     function request(user) {
         return {
-            type: constants.user.LOGOUT_REQUEST,
+            type: constants.user.USER_LOGOUT_REQUEST,
             payload: user
         }
     }
 
     function success(user) {
         return {
-            type: constants.user.LOGOUT_SUCCESS,
+            type: constants.user.USER_LOGOUT_SUCCESS,
             payload: user
         }
     }
@@ -111,20 +111,20 @@ function loadProfile(id) {
 
     function request() {
         return {
-            type: constants.user.LOAD_PROFILE_REQUEST
+            type: constants.user.USER_LOAD_PROFILE_REQUEST
         }
     }
 
     function success(results) {
         return {
-            type: constants.user.LOAD_PROFILE_SUCCESS,
+            type: constants.user.USER_LOAD_PROFILE_SUCCESS,
             payload: results
         }
     }
 
     function failure(error) {
         return {
-            type: constants.user.LOAD_PROFILE_FAILURE,
+            type: constants.user.USER_LOAD_PROFILE_FAILURE,
             payload: error
         }
     }
