@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { constants } from '../../constants'
 import './RecipeList.css'
 
@@ -14,7 +15,7 @@ class RecipeList extends React.Component {
                                     <img src={constants.api.url + recipe.image.replace(/public/, '')} alt="Recipe preview"/>
                                 </div>
                                 <div className="recipe-meta right-justify">
-                                    <h1>{recipe.title}</h1>
+                                    <Link to={'/recipe/view/' + recipe.id}>{recipe.title}</Link>
                                     <p>{recipe.description}</p>
                                 </div>
                             </div>

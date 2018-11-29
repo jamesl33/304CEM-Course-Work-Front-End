@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { constants } from '../constants'
 import { actions } from '../actions'
+import { helpers } from '../helpers'
 import { CommentBox } from '../components/forms/CommentBox'
 import './Recipe.css'
 
@@ -49,6 +50,12 @@ class Recipe extends React.Component {
                         <p>{`${this.props.recipe.views} Views, ${this.props.recipe.likes} Likes`}</p>
                     </div>
                     <div className="user-actions">
+                        {(JSON.parse(localStorage.getItem('user')).id === this.props.recipe.createdBy) &&
+                         <>
+                             <button onClick={() => helpers.history.push('/recipe/edit/' + this.props.match.params.id)}>
+                                 <i className="fa fa-edit"></i>
+                             </button>
+                         </>}
                         <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
                             <i className="fa fa-ban"></i>
                         </button>
