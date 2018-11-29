@@ -66,8 +66,12 @@ class Recipe extends React.Component {
                          <button onClick={() => this.props.unlikeRecipe(this.props.match.params.id)} disabled={this.props.recipe.unliking}>
                              <i className="fa fa-thumbs-down"></i>
                          </button>}
+                        <button onClick={() => helpers.history.push('/profile/' + this.props.recipe.createdBy)}>
+                            <i className="fa fa-user"></i>
+                        </button>
                     </div>
                 </div>
+                {console.log(this.props.recipe)}
                 {this.props.recipe.comments !== "[]" &&
                  <ul className="comments">
                      <h1>Comments:</h1>
