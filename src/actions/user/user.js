@@ -105,6 +105,7 @@ function loadProfile(id) {
                     dispatch(success(results))
                 })
                 .catch(error => {
+                    helpers.history.replace('/404')
                     dispatch(failure(error))
                 })
     }

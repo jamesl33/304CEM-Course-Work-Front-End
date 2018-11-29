@@ -43,6 +43,7 @@ function edit(recipe) {
                     dispatch(success(recipe))
                 })
                 .catch(error => {
+                    helpers.history.replace('/404') // I know it was a 403 but the user doesn't need to know that
                     dispatch(failure(error))
                 })
     }
@@ -174,6 +175,7 @@ function load(recipe) {
                     dispatch(success(recipe))
                 })
                 .catch(error => {
+                    helpers.history.replace('/404') // I know it was a 403 but the user doesn't need to know that
                     dispatch(failure(error))
                 })
     }

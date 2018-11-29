@@ -3,7 +3,7 @@ const api = {
         return response.text().then(text => {
             const data = text && JSON.parse(text)
 
-            if (!response.ok && response.status === 401) {
+            if ((!response.ok && response.status === 401) || response.status === 403) {
                 return Promise.reject((data && data.message) || response.statusText)
             }
 
