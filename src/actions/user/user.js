@@ -96,10 +96,45 @@ function logout(user) {
     }
 }
 
+function loadProfile(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.user.loadProfile(id)
+                .then(results => {
+                    dispatch(success(results))
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.user.LOAD_PROFILE_REQUEST
+        }
+    }
+
+    function success(results) {
+        return {
+            type: constants.user.LOAD_PROFILE_SUCCESS,
+            payload: results
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.user.LOAD_PROFILE_FAILURE,
+            payload: error
+        }
+    }
+}
+
 const user = {
     register,
     login,
-    logout
+    logout,
+    loadProfile
 }
 
 export { user }

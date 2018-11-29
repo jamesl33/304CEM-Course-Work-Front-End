@@ -29,10 +29,16 @@ function logout() {
     localStorage.removeItem('user')
 }
 
+function loadProfile(id) {
+    return fetch(`${constants.api.url}/user/profile`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
 const user = {
     register,
     login,
-    logout
+    logout,
+    loadProfile
 }
 
 export { user }

@@ -21,7 +21,7 @@ class Header extends React.Component {
                           <Link to="/register" onClick={() => {this.props.menuOpen && this.props.toggleMenu()}}>Register</Link>
                       </>) ||
                      <>
-                         <Link to="/profile">{JSON.parse(localStorage.getItem('user')).name}</Link>
+                         <Link to={'/profile/' + JSON.parse(localStorage.getItem('user')).id}>{JSON.parse(localStorage.getItem('user')).name}</Link>
                          <Link to="/" onClick={() => {!this.props.loggingOut && this.props.logout(JSON.parse(localStorage.getItem('user')))}}>Logout</Link>
                      </>}
                 </div>

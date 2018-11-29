@@ -8,6 +8,7 @@ import { Register } from '../Register'
 import { RecipeUpload } from '../RecipeUpload'
 import { RecipeEdit } from '../RecipeEdit'
 import { Recipe } from '../Recipe'
+import { Profile } from '../Profile'
 import { Footer } from '../components/Footer'
 import './App.css'
 
@@ -26,6 +27,7 @@ class App extends React.Component {
                             <Route exact path="/recipe/new" component={RecipeUpload}/>
                             <Route exact path="/recipe/edit/:id" component={RecipeEdit}/>
                             <Route exact path="/recipe/view/:id" component={Recipe}/>
+                            <Route exact path="/profile/:id" component={Profile}/>
                         </div>
                         <Footer/>
                     </>
