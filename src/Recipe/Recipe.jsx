@@ -71,7 +71,6 @@ class Recipe extends React.Component {
                         </button>
                     </div>
                 </div>
-                {console.log(this.props.recipe)}
                 {this.props.recipe.comments !== "[]" &&
                  <ul className="comments">
                      <h1>Comments:</h1>

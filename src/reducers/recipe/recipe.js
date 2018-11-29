@@ -67,8 +67,6 @@ const recipe = (state = { loading: false, recent: [], top: [], liking: false, un
             likes: state.likes - 1
         })
     case constants.recipe.RECIPE_UNLIKE_FAILURE:
-        console.log(state)
-
         return Object.assign({}, state, {
             unliking: false
         })
