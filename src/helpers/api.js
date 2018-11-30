@@ -9,6 +9,26 @@ const api = {
 
             return data
         })
+    },
+    jsonRequest: (body) => {
+        return {
+            body: body,
+            headers: {
+                authorization: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : undefined,
+                'content-type': 'application/json',
+            },
+            method: 'post'
+
+        }
+    },
+    multipartRequest: (body) => {
+        return {
+            body: body,
+            headers: {
+                authorization: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : undefined
+            },
+            method: 'post'
+        }
     }
 }
 

@@ -12,7 +12,7 @@ import { helpers } from '../../helpers'
  * to register a user.
  */
 function register(user) {
-    return fetch(`${constants.api.url}/user/register`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify(user) }))
+    return fetch(`${constants.api.url}/user/register`, helpers.api.jsonRequest(JSON.stringify(user)))
         .then(helpers.api.handleResponse)
         .then(user => {
             if (user.token) {
@@ -29,7 +29,7 @@ function register(user) {
  * for the user to login.
  */
 function login(user) {
-    return fetch(`${constants.api.url}/user/login`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify(user) }))
+    return fetch(`${constants.api.url}/user/login`, helpers.api.jsonRequest(JSON.stringify(user)))
         .then(helpers.api.handleResponse)
         .then(user => {
             if (user.token) {
@@ -52,7 +52,7 @@ function logout() {
  * @param {Integer} id - The id of the user whose profile we want to load.
  */
 function loadProfile(id) {
-    return fetch(`${constants.api.url}/user/profile`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+    return fetch(`${constants.api.url}/user/profile`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
         .then(helpers.api.handleResponse)
 }
 

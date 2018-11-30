@@ -54,7 +54,6 @@ function authentication(state = initialState, action) {
         return Object.assign({}, state, {
             loggedIn: false,
             loggingOut: false,
-            user: action.payload
         })
     default:
         return state

@@ -106,8 +106,7 @@ function logout(user) {
 
     function success(user) {
         return {
-            type: constants.user.USER_LOGOUT_SUCCESS,
-            payload: user
+            type: constants.user.USER_LOGOUT_SUCCESS
         }
     }
 }
