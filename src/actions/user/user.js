@@ -1,7 +1,17 @@
+/**
+ * @module actions:user
+ */
+
 import { constants } from '../../constants'
 import { services } from '../../services'
 import { helpers } from '../../helpers'
 
+/**
+ * @description Dispatch actions and run services which allow a user to
+ * login.
+ * @param {Object} user - The user object which will be send to the server
+ * and is used to verify the user.
+ */
 function login(user) {
     return dispatch => {
         dispatch(request(user))
@@ -38,6 +48,12 @@ function login(user) {
     }
 }
 
+/**
+ * @description Dispatch all the actions and run services to register a new
+ * user.
+ * @param {Object} - The user object containing all of the fields needed to
+ * register a new user.
+ */
 function register(user) {
     return dispatch => {
         dispatch(request(user))
@@ -96,6 +112,11 @@ function logout(user) {
     }
 }
 
+/**
+ * @description Dispatch any actions and run services to load a user
+ * profile.
+ * @param {Integer} id - The id of the user.
+ */
 function loadProfile(id) {
     return dispatch => {
         dispatch(request())

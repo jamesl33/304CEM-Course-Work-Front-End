@@ -1,6 +1,15 @@
+/**
+ * @module actions:comments
+ */
+
 import { constants } from '../../constants'
 import { services } from '../../services'
 
+/**
+ * @description Dispatch all the actions necessary so that the user can comment
+ * on a recipe.
+ * @param {Object} values - The comment object which will be sent to the api.
+ */
 function comment(values) {
     return dispatch => {
         dispatch(request())
