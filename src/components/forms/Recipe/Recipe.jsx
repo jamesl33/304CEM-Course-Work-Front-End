@@ -7,7 +7,7 @@ import { actions } from '../../../actions'
 import '../forms.css'
 
 const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
-    <>
+    <React.Fragment>
         <ul>
             {fields.map((step, stepIndex) =>
                 <li key={stepIndex}>
@@ -31,7 +31,7 @@ const renderSteps = ({ fields, meta: { touched, error, warning }}) => (
                 <button type="button" onClick={() => {fields.pop()}} disabled={fields.length <= 1}>Remove Step</button>
             </div>
         </ul>
-    </>
+    </React.Fragment>
 )
 
 class RecipeForm extends React.Component {

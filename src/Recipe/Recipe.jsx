@@ -30,14 +30,14 @@ class Recipe extends React.Component {
                         <li key={stepIndex}>
                             <div className="step">
                                 {(step.image &&
-                                  <>
+                                  <React.Fragment>
                                       <div className="step-image left-justify">
                                           <img src={constants.api.url + step.image.replace(/public/, '')} alt="Step preview"/>
                                       </div>
                                       <div className="step-description right-justify">
                                           <p>{step.description}</p>
                                       </div>
-                                  </>) ||
+                                  </React.Fragment>) ||
                                  <div className="step-description-no-image">
                                      <p>{step.description}</p>
                                  </div>}
@@ -51,11 +51,11 @@ class Recipe extends React.Component {
                     </div>
                     <div className="user-actions">
                         {(JSON.parse(localStorage.getItem('user')).id === this.props.recipe.createdBy) &&
-                         <>
+                         <React.Fragment>
                              <button onClick={() => helpers.history.push('/recipe/edit/' + this.props.match.params.id)}>
                                  <i className="fa fa-edit"></i>
                              </button>
-                         </>}
+                         </React.Fragment>}
                         <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
                             <i className="fa fa-ban"></i>
                         </button>

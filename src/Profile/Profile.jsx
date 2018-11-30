@@ -11,13 +11,13 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <>
+            <React.Fragment>
                 {this.props.profile &&
                  <div className="my-recipes">
                      <h1 className="headings">{`${this.props.profile.name}'s Recipes`}</h1>
                      <RecipeList recipeList={this.props.profile.recipes}/>
                  </div>}
-            </>
+            </React.Fragment>
         )
     }
 }

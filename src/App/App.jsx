@@ -16,10 +16,10 @@ import './App.css'
 class App extends React.Component {
     render() {
         return (
-            <>
+            <React.Fragment>
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossOrigin="anonymous"></link>
                 <Router history={helpers.history}>
-                    <>
+                    <React.Fragment>
                         <Header/>
                         <div className="content">
                             <Switch>
@@ -34,9 +34,9 @@ class App extends React.Component {
                             </Switch>
                         </div>
                         <Footer/>
-                    </>
+                    </React.Fragment>
                 </Router>
-            </>
+            </React.Fragment>
         )
     };
 }

@@ -20,11 +20,11 @@ class Home extends React.Component {
 
     render() {
         return (
-            <>
+            <React.Fragment>
                 <RecipeSearch/>
 
                 {this.props.loggedIn &&
-                 <>
+                 <React.Fragment>
                      {(this.props.userRecipes && this.props.userRecipes.length > 0) &&
                       <div className="user-recipes">
                           <h1 className="headings">My Recipes</h1>
@@ -35,8 +35,8 @@ class Home extends React.Component {
                           <h1 className="headings">Liked Recipes</h1>
                           <RecipeList recipeList={this.props.likedRecipes}/>
                       </div>}
-                 </>}
-                <>
+                 </React.Fragment>}
+                <React.Fragment>
                     {this.props.recent &&
 
                      <div className="recent-recipes">
@@ -49,8 +49,8 @@ class Home extends React.Component {
                          <h1 className="headings">Top Rated</h1>
                          <RecipeList recipeList={this.props.top}/>
                      </div>}
-                </>
-            </>
+                </React.Fragment>
+            </React.Fragment>
         )
     }
 }
