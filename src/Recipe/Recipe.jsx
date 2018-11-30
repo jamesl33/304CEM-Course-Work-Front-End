@@ -71,13 +71,13 @@ class Recipe extends React.Component {
                         <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
                             <i className="fa fa-ban"></i>
                         </button>
-                        {(!this.props.recipe.liked &&
+                        {localStorage.getItem('user') && ((!this.props.recipe.liked &&
                           <button onClick={() => this.props.likeRecipe(this.props.match.params.id)} disabled={this.props.recipe.liked || this.props.recipe.liking}>
                               <i className="fa fa-thumbs-up"></i>
                           </button>) ||
                          <button onClick={() => this.props.unlikeRecipe(this.props.match.params.id)} disabled={this.props.recipe.unliking}>
                              <i className="fa fa-thumbs-down"></i>
-                         </button>}
+                         </button>)}
                         <button onClick={() => helpers.history.push('/profile/' + this.props.recipe.createdBy)}>
                             <i className="fa fa-user"></i>
                         </button>
