@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/recipe/recipe.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/recipe/recipe.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module services:recipes
+ */
+
+import { constants } from '../../constants'
+import { helpers } from '../../helpers'
+
+function _recipeToFormData(recipe) {
+    const formData = new FormData()
+
+    Object.keys(recipe).forEach(key => {
+        if (key === 'image') {
+            formData.append('images', recipe.image[0])
+            formData.append(key, true)
+        } else if (key === 'steps') {
+            const descriptions = []
+
+            recipe.steps.forEach(step => {
+                if (step.image &amp;&amp; step.image.length > 0) {
+                    formData.append('images', step.image[0])
+                }
+
+                descriptions.push({
+                    image: step.image &amp;&amp; step.image.length > 0 ? true : false, // I need to support optional images per step
+                    description: step.description
+                })
+            })
+
+            formData.append(key, JSON.stringify(descriptions))
+        } else {
+            formData.append(key, recipe[key])
+        }
+    })
+
+    return formData
+}
+
+/**
+ * @description Send a recipe to the api so that it can be saved.
+ * @param {Object} recipe - The recipe object that will be sent to the api.
+ */
+function save(recipe) {
+    return fetch(`${constants.api.url}/recipe/save`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Request a recipe to loaded for editing. Will be used with the
+ * RecipeEdit form.
+ * @param {Integer} id - The id of the recipe to be loaded.
+ */
+function edit(id) {
+    return fetch(`${constants.api.url}/recipe/edit`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Send a recipe to the api to save with the published flag set.
+ * @param {Object} recipe - The recipe object to the send to the api.
+ */
+function publish(recipe) {
+    return fetch(`${constants.api.url}/recipe/publish`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
+        .then(helpers.api.handleResponse)
+        .then(response => {
+            helpers.history.push(response.url)
+        })
+}
+
+/**
+ * @description Toggle the published flag for a recipe in the database.
+ * @param {Integer} id - The id of the recipe to edit.
+ */
+function togglePublished(id) {
+    return fetch(`${constants.api.url}/recipe/publish/toggle`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({id: id}) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Send a recipe object to the api to be updated.
+ * @param {Object} recipe - The recipe object with the updated fields.
+ */
+function update(recipe) {
+    return fetch(`${constants.api.url}/recipe/update`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Load a recipe so that a user can view it. Will be used with the Recipe component.
+ * @param {Integer} id - The id of the recipe to be loaded.
+ */
+function load(id) {
+    return fetch(`${constants.api.url}/recipe/load`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Load five of the most recent recipes from the api.
+ */
+function recent() {
+    return fetch(`${constants.api.url}/recipe/recent`, Object.assign({}, constants.api.requests.json))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Load the top five recipes from the api.
+ */
+function top() {
+    return fetch(`${constants.api.url}/recipe/top`, Object.assign({}, constants.api.requests.json))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Have a user like a recipe.
+ * @param {Integer} id - The id of the recipe that the user is liking.
+ */
+function like(id) {
+    return fetch(`${constants.api.url}/recipe/like`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Have a user unlike a recipe.
+ * @param {Integer} id - The id of the recipe the user is unliking.
+ */
+function unlike(id) {
+    return fetch(`${constants.api.url}/recipe/unlike`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Mark a recipe as reported.
+ * @param {Integer} id - The id of the recipe that the user is reporting.
+ */
+function report(id) {
+    return fetch(`${constants.api.url}/recipe/report`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Search the database for recipes.
+ * @param {String} query - The query that will be used when searching the database.
+ */
+function search(query) {
+    return fetch(`${constants.api.url}/recipe/search`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ query: query }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Load five random recipes that the user has created.
+ * @param {Integer} id - The id of the user we are loading recipes for.
+ */
+function userRecipes(id) {
+    return fetch(`${constants.api.url}/recipe/user`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+/**
+ * @description Load five random recipes that the user has liked.
+ * @param {Integer} id - The id of the user we are loading recipes for.
+ */
+function likedRecipes(id) {
+    return fetch(`${constants.api.url}/recipe/liked`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
+        .then(helpers.api.handleResponse)
+}
+
+const recipe = {
+    save,
+    edit,
+    publish,
+    togglePublished,
+    update,
+    load,
+    recent,
+    top,
+    like,
+    unlike,
+    report,
+    search,
+    userRecipes,
+    likedRecipes
+}
+
+export { recipe }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="actions_comments.html">actions:comments</a></li><li><a href="actions_header.html">actions:header</a></li><li><a href="actions_recipe.html">actions:recipe</a></li><li><a href="actions_user.html">actions:user</a></li><li><a href="module-actions.html">actions</a></li><li><a href="module-services.html">services</a></li><li><a href="services_comments.html">services:comments</a></li><li><a href="services_recipes.html">services:recipes</a></li><li><a href="services_user.html">services:user</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Home.html">Home</a></li><li><a href="Login.html">Login</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeEdit.html">RecipeEdit</a></li><li><a href="RecipeUpload.html">RecipeUpload</a></li><li><a href="Register.html">Register</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 30 2018 14:14:10 GMT+0000 (GMT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
