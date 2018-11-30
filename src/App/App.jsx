@@ -13,7 +13,14 @@ import { NotFound } from '../NotFound'
 import { Footer } from '../components/Footer'
 import './App.css'
 
+/**
+ * @description The root component which deals with the router and history.
+ */
 class App extends React.Component {
+    /**
+     * @description Render the app component. Each page after this point is
+     * switched into the 'content' div.
+     */
     render() {
         return (
             <React.Fragment>

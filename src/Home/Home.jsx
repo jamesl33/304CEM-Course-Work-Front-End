@@ -5,7 +5,17 @@ import { RecipeSearch } from '../components/forms/RecipeSearch'
 import { actions } from '../actions'
 import './Home.css'
 
+/**
+ * @description The home page for the recipe blog which loads recipes lists of
+ * several different types. This includes: five of the users recipes, five of
+ * the users liked recipes, five of the most recent recipes and five of the
+ * most recent recipes.
+ */
 class Home extends React.Component {
+    /**
+     * @description Dispatch the actions so that redux can load the recipes
+     * are loaded while the component mounts.
+     */
     componentWillMount() {
         if (this.props.loggedIn) {
             const user = JSON.parse(localStorage.getItem('user'))
@@ -18,6 +28,9 @@ class Home extends React.Component {
         this.props.loadTop()
     }
 
+    /**
+     * @description Render the content of the home page.
+     */
     render() {
         return (
             <React.Fragment>
