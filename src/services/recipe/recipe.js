@@ -1,3 +1,7 @@
+/**
+ * @module services:recipes
+ */
+
 import { constants } from '../../constants'
 import { helpers } from '../../helpers'
 
@@ -31,16 +35,29 @@ function _recipeToFormData(recipe) {
     return formData
 }
 
+/**
+ * @description Send a recipe to the api so that it can be saved.
+ * @param {Object} recipe - The recipe object that will be sent to the api.
+ */
 function save(recipe) {
     return fetch(`${constants.api.url}/recipe/save`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Request a recipe to loaded for editing. Will be used with the
+ * RecipeEdit form.
+ * @param {Integer} id - The id of the recipe to be loaded.
+ */
 function edit(id) {
     return fetch(`${constants.api.url}/recipe/edit`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Send a recipe to the api to save with the published flag set.
+ * @param {Object} recipe - The recipe object to the send to the api.
+ */
 function publish(recipe) {
     return fetch(`${constants.api.url}/recipe/publish`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
         .then(helpers.api.handleResponse)
@@ -49,56 +66,98 @@ function publish(recipe) {
         })
 }
 
+/**
+ * @description Toggle the published flag for a recipe in the database.
+ * @param {Integer} id - The id of the recipe to edit.
+ */
 function togglePublished(id) {
     return fetch(`${constants.api.url}/recipe/publish/toggle`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({id: id}) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Send a recipe object to the api to be updated.
+ * @param {Object} recipe - The recipe object with the updated fields.
+ */
 function update(recipe) {
     return fetch(`${constants.api.url}/recipe/update`, Object.assign({}, constants.api.requests.multipart, { body: _recipeToFormData(recipe) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Load a recipe so that a user can view it. Will be used with the Recipe component.
+ * @param {Integer} id - The id of the recipe to be loaded.
+ */
 function load(id) {
     return fetch(`${constants.api.url}/recipe/load`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Load five of the most recent recipes from the api.
+ */
 function recent() {
     return fetch(`${constants.api.url}/recipe/recent`, Object.assign({}, constants.api.requests.json))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Load the top five recipes from the api.
+ */
 function top() {
     return fetch(`${constants.api.url}/recipe/top`, Object.assign({}, constants.api.requests.json))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Have a user like a recipe.
+ * @param {Integer} id - The id of the recipe that the user is liking.
+ */
 function like(id) {
     return fetch(`${constants.api.url}/recipe/like`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Have a user unlike a recipe.
+ * @param {Integer} id - The id of the recipe the user is unliking.
+ */
 function unlike(id) {
     return fetch(`${constants.api.url}/recipe/unlike`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Mark a recipe as reported.
+ * @param {Integer} id - The id of the recipe that the user is reporting.
+ */
 function report(id) {
     return fetch(`${constants.api.url}/recipe/report`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Search the database for recipes.
+ * @param {String} query - The query that will be used when searching the database.
+ */
 function search(query) {
     return fetch(`${constants.api.url}/recipe/search`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ query: query }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Load five random recipes that the user has created.
+ * @param {Integer} id - The id of the user we are loading recipes for.
+ */
 function userRecipes(id) {
     return fetch(`${constants.api.url}/recipe/user`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
 }
 
+/**
+ * @description Load five random recipes that the user has liked.
+ * @param {Integer} id - The id of the user we are loading recipes for.
+ */
 function likedRecipes(id) {
     return fetch(`${constants.api.url}/recipe/liked`, Object.assign({}, constants.api.requests.json, { body: JSON.stringify({ id: id }) }))
         .then(helpers.api.handleResponse)
