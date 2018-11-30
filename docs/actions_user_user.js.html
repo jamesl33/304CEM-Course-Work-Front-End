@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: actions/user/user.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: actions/user/user.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module actions:user
+ */
+
+import { constants } from '../../constants'
+import { services } from '../../services'
+import { helpers } from '../../helpers'
+
+/**
+ * @description Dispatch actions and run services which allow a user to
+ * login.
+ * @param {Object} user - The user object which will be send to the server
+ * and is used to verify the user.
+ */
+function login(user) {
+    return dispatch => {
+        dispatch(request(user))
+
+        services.user.login(user)
+                .then(user => {
+                    dispatch(success(user))
+                    helpers.history.push('/')
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request(user) {
+        return {
+            type: constants.user.USER_LOGIN_REQUEST,
+            payload: user
+        }
+    }
+
+    function success(user) {
+        return {
+            type: constants.user.USER_LOGIN_SUCCESS,
+            payload: user
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.user.USER_LOGIN_FAILURE,
+            payload: error
+        }
+    }
+}
+
+/**
+ * @description Dispatch all the actions and run services to register a new
+ * user.
+ * @param {Object} - The user object containing all of the fields needed to
+ * register a new user.
+ */
+function register(user) {
+    return dispatch => {
+        dispatch(request(user))
+
+        services.user.register(user)
+                .then(user => {
+                    dispatch(success(user))
+                    helpers.history.push('/')
+                })
+                .catch(error => {
+                    dispatch(failure(error))
+                })
+    }
+
+    function request(user) {
+        return {
+            type: constants.user.USER_REGISTER_REQUEST,
+            payload: user
+        }
+    }
+
+    function success(user) {
+        return {
+            type: constants.user.USER_REGISTER_SUCCESS,
+            payload: user
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.user.USER_REGISTER_FAILURE,
+            payload: error
+        }
+    }
+}
+
+function logout(user) {
+    return dispatch => {
+        dispatch(request(user))
+        services.user.logout()
+        dispatch(success(user))
+    }
+
+    function request(user) {
+        return {
+            type: constants.user.USER_LOGOUT_REQUEST,
+            payload: user
+        }
+    }
+
+    function success(user) {
+        return {
+            type: constants.user.USER_LOGOUT_SUCCESS,
+            payload: user
+        }
+    }
+}
+
+/**
+ * @description Dispatch any actions and run services to load a user
+ * profile.
+ * @param {Integer} id - The id of the user.
+ */
+function loadProfile(id) {
+    return dispatch => {
+        dispatch(request())
+
+        services.user.loadProfile(id)
+                .then(results => {
+                    dispatch(success(results))
+                })
+                .catch(error => {
+                    helpers.history.replace('/404')
+                    dispatch(failure(error))
+                })
+    }
+
+    function request() {
+        return {
+            type: constants.user.USER_LOAD_PROFILE_REQUEST
+        }
+    }
+
+    function success(results) {
+        return {
+            type: constants.user.USER_LOAD_PROFILE_SUCCESS,
+            payload: results
+        }
+    }
+
+    function failure(error) {
+        return {
+            type: constants.user.USER_LOAD_PROFILE_FAILURE,
+            payload: error
+        }
+    }
+}
+
+const user = {
+    register,
+    login,
+    logout,
+    loadProfile
+}
+
+export { user }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="actions_comments.html">actions:comments</a></li><li><a href="actions_header.html">actions:header</a></li><li><a href="actions_recipe.html">actions:recipe</a></li><li><a href="actions_user.html">actions:user</a></li><li><a href="module-actions.html">actions</a></li><li><a href="module-services.html">services</a></li><li><a href="services_comments.html">services:comments</a></li><li><a href="services_recipes.html">services:recipes</a></li><li><a href="services_user.html">services:user</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Home.html">Home</a></li><li><a href="Login.html">Login</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeEdit.html">RecipeEdit</a></li><li><a href="RecipeUpload.html">RecipeUpload</a></li><li><a href="Register.html">Register</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 30 2018 14:14:10 GMT+0000 (GMT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

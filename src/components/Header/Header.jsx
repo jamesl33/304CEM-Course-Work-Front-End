@@ -16,15 +16,15 @@ class Header extends React.Component {
                 </div>
                 <div className="right-justify">
                     {(!this.props.loggedIn &&
-                      <>
+                      <React.Fragment>
                           <Link to="/login" onClick={() => {this.props.menuOpen && this.props.toggleMenu()}}>Login</Link>
                           <Link to="/register" onClick={() => {this.props.menuOpen && this.props.toggleMenu()}}>Register</Link>
-                      </>) ||
-                     <>
+                      </React.Fragment>) ||
+                     <React.Fragment>
                          <Link to={'/recipe/new'}>New Recipe</Link>
                          <Link to={'/profile/' + JSON.parse(localStorage.getItem('user')).id}>{JSON.parse(localStorage.getItem('user')).name}</Link>
                          <Link to="/" onClick={() => {!this.props.loggingOut && this.props.logout(JSON.parse(localStorage.getItem('user')))}}>Logout</Link>
-                     </>}
+                     </React.Fragment>}
                 </div>
             </header>
         )

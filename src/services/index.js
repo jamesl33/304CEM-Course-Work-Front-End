@@ -1,3 +1,7 @@
+/**
+ * @module services
+ */
+
 import { user } from './user'
 import { recipe } from './recipe'
 import { comments } from './comments'

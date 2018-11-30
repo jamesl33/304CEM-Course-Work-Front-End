@@ -1,3 +1,7 @@
+/**
+ * @module actions
+ */
+
 import { user } from './user'
 import { header } from './header'
 import { recipe } from './recipe'

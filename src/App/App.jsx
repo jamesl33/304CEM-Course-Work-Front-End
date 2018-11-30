@@ -13,13 +13,20 @@ import { NotFound } from '../NotFound'
 import { Footer } from '../components/Footer'
 import './App.css'
 
+/**
+ * @description The root component which deals with the router and history.
+ */
 class App extends React.Component {
+    /**
+     * @description Render the app component. Each page after this point is
+     * switched into the 'content' div.
+     */
     render() {
         return (
-            <>
+            <React.Fragment>
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossOrigin="anonymous"></link>
                 <Router history={helpers.history}>
-                    <>
+                    <React.Fragment>
                         <Header/>
                         <div className="content">
                             <Switch>
@@ -34,9 +41,9 @@ class App extends React.Component {
                             </Switch>
                         </div>
                         <Footer/>
-                    </>
+                    </React.Fragment>
                 </Router>
-            </>
+            </React.Fragment>
         )
     };
 }

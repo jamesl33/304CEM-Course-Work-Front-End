@@ -5,7 +5,17 @@ import { RecipeSearch } from '../components/forms/RecipeSearch'
 import { actions } from '../actions'
 import './Home.css'
 
+/**
+ * @description The home page for the recipe blog which loads recipes lists of
+ * several different types. This includes: five of the users recipes, five of
+ * the users liked recipes, five of the most recent recipes and five of the
+ * most recent recipes.
+ */
 class Home extends React.Component {
+    /**
+     * @description Dispatch the actions so that redux can load the recipes
+     * are loaded while the component mounts.
+     */
     componentWillMount() {
         if (this.props.loggedIn) {
             const user = JSON.parse(localStorage.getItem('user'))
@@ -18,13 +28,16 @@ class Home extends React.Component {
         this.props.loadTop()
     }
 
+    /**
+     * @description Render the content of the home page.
+     */
     render() {
         return (
-            <>
+            <React.Fragment>
                 <RecipeSearch/>
 
                 {this.props.loggedIn &&
-                 <>
+                 <React.Fragment>
                      {(this.props.userRecipes && this.props.userRecipes.length > 0) &&
                       <div className="user-recipes">
                           <h1 className="headings">My Recipes</h1>
@@ -35,8 +48,8 @@ class Home extends React.Component {
                           <h1 className="headings">Liked Recipes</h1>
                           <RecipeList recipeList={this.props.likedRecipes}/>
                       </div>}
-                 </>}
-                <>
+                 </React.Fragment>}
+                <React.Fragment>
                     {this.props.recent &&
 
                      <div className="recent-recipes">
@@ -49,8 +62,8 @@ class Home extends React.Component {
                          <h1 className="headings">Top Rated</h1>
                          <RecipeList recipeList={this.props.top}/>
                      </div>}
-                </>
-            </>
+                </React.Fragment>
+            </React.Fragment>
         )
     }
 }

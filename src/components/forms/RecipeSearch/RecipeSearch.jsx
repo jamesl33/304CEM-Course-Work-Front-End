@@ -10,7 +10,7 @@ import './RecipeSearch.css'
 class RecipeSearch extends React.Component {
     render() {
         return (
-            <>
+            <React.Fragment>
                 <div className="form search-container">
                     <form>
                         <Field name="search" component={renderInput} type="text" placeholder="Search"/>
@@ -26,7 +26,7 @@ class RecipeSearch extends React.Component {
                      <h1 className="headings">Search Results</h1>
                      <RecipeList recipeList={this.props.results}/>
                  </div>}
-            </>
+            </React.Fragment>
         )
     }
 }

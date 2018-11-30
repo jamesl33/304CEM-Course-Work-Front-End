@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Recipe/Recipe.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Recipe/Recipe.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import { connect } from 'react-redux'
+import { constants } from '../constants'
+import { actions } from '../actions'
+import { helpers } from '../helpers'
+import { CommentBox } from '../components/forms/CommentBox'
+import './Recipe.css'
+
+/**
+ * @description Component to handle loading and displaying of a single
+ * recipe. This is a central part of the recipe blog as it contains
+ * lots of navigation components.
+ */
+class Recipe extends React.Component {
+    /**
+     * @description Fetch the recipe from the database while the component
+     * is mounting.
+     */
+    componentWillMount() {
+        this.props.loadRecipe(this.props.match.params.id)
+    }
+
+    /**
+     * @description Render the recipe component.
+     */
+    render() {
+        return (
+            &lt;div className="recipe">
+                &lt;div className="recipe-header"> { /* Meta information about the recipe */ }
+                    &lt;div className="preview-image left-justify">
+                        &lt;img src={this.props.recipe.image &amp;&amp; constants.api.url + this.props.recipe.image.replace(/public/, '')} alt="Recipe preview"/>
+                    &lt;/div>
+                    &lt;div className="meta right-justify">
+                        &lt;div>
+                            &lt;h1>{this.props.recipe.title}&lt;/h1>
+                            &lt;p>{this.props.recipe.description}&lt;/p>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+                &lt;ul className="steps"> { /* Render the recipe steps */ }
+                    {this.props.recipe.steps &amp;&amp; JSON.parse(this.props.recipe.steps).map((step, stepIndex) =>
+                        &lt;li key={stepIndex}>
+                            &lt;div className="step">
+                                {(step.image &amp;&amp;
+                                  &lt;React.Fragment>
+                                      &lt;div className="step-image left-justify">
+                                          &lt;img src={constants.api.url + step.image.replace(/public/, '')} alt="Step preview"/>
+                                      &lt;/div>
+                                      &lt;div className="step-description right-justify">
+                                          &lt;p>{step.description}&lt;/p>
+                                      &lt;/div>
+                                  &lt;/React.Fragment>) ||
+                                 &lt;div className="step-description-no-image">
+                                     &lt;p>{step.description}&lt;/p>
+                                 &lt;/div>}
+                            &lt;/div>
+                        &lt;/li>
+                    )}
+                &lt;/ul>
+                &lt;div style={{ display: 'flex', width: '100%' }}>
+                    &lt;div className="recipe-stats"> { /* Display the stats of the recipe */ }
+                        &lt;p>{`${this.props.recipe.views} Views, ${this.props.recipe.likes} Likes`}&lt;/p>
+                    &lt;/div>
+                    &lt;div className="user-actions">
+                        {localStorage.getItem('user') &amp;&amp; ((JSON.parse(localStorage.getItem('user')).id === this.props.recipe.createdBy)) &amp;&amp;
+                         &lt;React.Fragment>
+                             &lt;button onClick={() => helpers.history.push('/recipe/edit/' + this.props.match.params.id)}>
+                                 &lt;i className="fa fa-edit">&lt;/i>
+                             &lt;/button>
+                         &lt;/React.Fragment>}
+                        &lt;button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
+                            &lt;i className="fa fa-ban">&lt;/i>
+                        &lt;/button>
+                        {(!this.props.recipe.liked &amp;&amp;
+                          &lt;button onClick={() => this.props.likeRecipe(this.props.match.params.id)} disabled={this.props.recipe.liked || this.props.recipe.liking}>
+                              &lt;i className="fa fa-thumbs-up">&lt;/i>
+                          &lt;/button>) ||
+                         &lt;button onClick={() => this.props.unlikeRecipe(this.props.match.params.id)} disabled={this.props.recipe.unliking}>
+                             &lt;i className="fa fa-thumbs-down">&lt;/i>
+                         &lt;/button>}
+                        &lt;button onClick={() => helpers.history.push('/profile/' + this.props.recipe.createdBy)}>
+                            &lt;i className="fa fa-user">&lt;/i>
+                        &lt;/button>
+                    &lt;/div>
+                &lt;/div>
+                {this.props.recipe.comments !== "[]" &amp;&amp;
+                 &lt;ul className="comments"> { /* Render all of the comments related to this recipe */ }
+                     &lt;h1>Comments:&lt;/h1>
+                     {this.props.recipe.comments &amp;&amp; JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
+                         &lt;li key={commentIndex}>
+                             &lt;div className="comment">
+                                 &lt;pre>{`${comment.createdBy}:\n${comment.comment}`}&lt;/pre>
+                             &lt;/div>
+                         &lt;/li>
+                     )}
+                 &lt;/ul>}
+                &lt;CommentBox recipeId={this.props.match.params.id}/>
+            &lt;/div>
+        )
+    }
+}
+
+const mapStateToProps = (state) => ({
+    recipe: state.recipe
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    loadRecipe: (id) => {
+        dispatch(actions.recipe.load(id))
+    },
+    likeRecipe: (id) => {
+        dispatch(actions.recipe.like(id))
+    },
+    unlikeRecipe: (id) => {
+        dispatch(actions.recipe.unlike(id))
+    },
+    reportRecipe: (id) => {
+        dispatch(actions.recipe.report(id))
+    }
+})
+
+const connectedRecipe = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Recipe)
+
+export { connectedRecipe as Recipe }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="actions_comments.html">actions:comments</a></li><li><a href="actions_header.html">actions:header</a></li><li><a href="actions_recipe.html">actions:recipe</a></li><li><a href="actions_user.html">actions:user</a></li><li><a href="module-actions.html">actions</a></li><li><a href="module-services.html">services</a></li><li><a href="services_comments.html">services:comments</a></li><li><a href="services_recipes.html">services:recipes</a></li><li><a href="services_user.html">services:user</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Home.html">Home</a></li><li><a href="Login.html">Login</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeEdit.html">RecipeEdit</a></li><li><a href="RecipeUpload.html">RecipeUpload</a></li><li><a href="Register.html">Register</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 30 2018 14:14:10 GMT+0000 (GMT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -6,15 +6,27 @@ import { helpers } from '../helpers'
 import { CommentBox } from '../components/forms/CommentBox'
 import './Recipe.css'
 
+/**
+ * @description Component to handle loading and displaying of a single
+ * recipe. This is a central part of the recipe blog as it contains
+ * lots of navigation components.
+ */
 class Recipe extends React.Component {
+    /**
+     * @description Fetch the recipe from the database while the component
+     * is mounting.
+     */
     componentWillMount() {
         this.props.loadRecipe(this.props.match.params.id)
     }
 
+    /**
+     * @description Render the recipe component.
+     */
     render() {
         return (
             <div className="recipe">
-                <div className="recipe-header">
+                <div className="recipe-header"> { /* Meta information about the recipe */ }
                     <div className="preview-image left-justify">
                         <img src={this.props.recipe.image && constants.api.url + this.props.recipe.image.replace(/public/, '')} alt="Recipe preview"/>
                     </div>
@@ -25,19 +37,19 @@ class Recipe extends React.Component {
                         </div>
                     </div>
                 </div>
-                <ul className="steps">
+                <ul className="steps"> { /* Render the recipe steps */ }
                     {this.props.recipe.steps && JSON.parse(this.props.recipe.steps).map((step, stepIndex) =>
                         <li key={stepIndex}>
                             <div className="step">
                                 {(step.image &&
-                                  <>
+                                  <React.Fragment>
                                       <div className="step-image left-justify">
                                           <img src={constants.api.url + step.image.replace(/public/, '')} alt="Step preview"/>
                                       </div>
                                       <div className="step-description right-justify">
                                           <p>{step.description}</p>
                                       </div>
-                                  </>) ||
+                                  </React.Fragment>) ||
                                  <div className="step-description-no-image">
                                      <p>{step.description}</p>
                                  </div>}
@@ -46,16 +58,16 @@ class Recipe extends React.Component {
                     )}
                 </ul>
                 <div style={{ display: 'flex', width: '100%' }}>
-                    <div className="recipe-stats">
+                    <div className="recipe-stats"> { /* Display the stats of the recipe */ }
                         <p>{`${this.props.recipe.views} Views, ${this.props.recipe.likes} Likes`}</p>
                     </div>
                     <div className="user-actions">
-                        {(JSON.parse(localStorage.getItem('user')).id === this.props.recipe.createdBy) &&
-                         <>
+                        {localStorage.getItem('user') && ((JSON.parse(localStorage.getItem('user')).id === this.props.recipe.createdBy)) &&
+                         <React.Fragment>
                              <button onClick={() => helpers.history.push('/recipe/edit/' + this.props.match.params.id)}>
                                  <i className="fa fa-edit"></i>
                              </button>
-                         </>}
+                         </React.Fragment>}
                         <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
                             <i className="fa fa-ban"></i>
                         </button>
@@ -72,7 +84,7 @@ class Recipe extends React.Component {
                     </div>
                 </div>
                 {this.props.recipe.comments !== "[]" &&
-                 <ul className="comments">
+                 <ul className="comments"> { /* Render all of the comments related to this recipe */ }
                      <h1>Comments:</h1>
                      {this.props.recipe.comments && JSON.parse(this.props.recipe.comments).map((comment, commentIndex) =>
                          <li key={commentIndex}>

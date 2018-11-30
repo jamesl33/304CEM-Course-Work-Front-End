@@ -1,7 +1,16 @@
+/**
+ * @module actions:recipe
+ */
+
 import { constants } from '../../constants'
 import { services } from '../../services'
 import { helpers } from '../../helpers'
 
+/**
+ * @description Dispatch all the actions needed to allow the user to save a
+ * recipe to the api's database.
+ * @param {Object} recipe - The recipe object that will be sent to the api.
+ */
 function save(recipe) {
     return dispatch => {
         dispatch(request(recipe))
@@ -34,11 +43,16 @@ function save(recipe) {
     }
 }
 
-function edit(recipe) {
+/**
+ * @description Dispatch all the actions and run any services needed to
+ * successfully load a recipe so that it can be edited.
+ * @param {Integer} id - The id of the recipe which the user wants to load.
+ */
+function edit(id) {
     return dispatch => {
         dispatch(request())
 
-        services.recipe.edit(recipe)
+        services.recipe.edit(id)
                 .then(recipe => {
                     dispatch(success(recipe))
                 })
@@ -68,6 +82,11 @@ function edit(recipe) {
     }
 }
 
+/**
+ * @description Dispatch any actions which are needed when publishing a users
+ * recipe.
+ * @param {Object} recipe - The recipe which is going to be publish on the blog.
+ */
 function publish(recipe) {
     return dispatch => {
         dispatch(request())
@@ -102,6 +121,12 @@ function publish(recipe) {
     }
 }
 
+/**
+ * @description Dispatch the actions need so that the user can toggle the
+ * published state of one of thier recipes.
+ * @param {Integer} id - The id of the recipe the user is attempting to
+ * publish/unpublish
+ */
 function togglePublished(id) {
     return dispatch => {
         dispatch(request())
@@ -135,6 +160,11 @@ function togglePublished(id) {
     }
 }
 
+/**
+ * @description Dispatch all the actions and run any services neeed so that a
+ * user can update a recipe. This is run when a submitting the RecipeEdit form.
+ * @param {Object} recipe - The updated recipe object.
+ */
 function update(recipe) {
     return dispatch => {
         dispatch(request())
@@ -166,11 +196,16 @@ function update(recipe) {
     }
 }
 
-function load(recipe) {
+/**
+ * @description Dispatch all of the actions to allow a user to load
+ * a recipe. This function is used with the Recipe component.
+ * @param {Integer} id - The id of the recipe the user is trying to view.
+ */
+function load(id) {
     return dispatch => {
         dispatch(request())
 
-        services.recipe.load(recipe)
+        services.recipe.load(id)
                 .then(recipe => {
                     dispatch(success(recipe))
                 })
@@ -201,6 +236,10 @@ function load(recipe) {
     }
 }
 
+/**
+ * @description Dispatch all the actions and run any services which will load
+ * the recent recipes.
+ */
 function recent() {
     return dispatch => {
         dispatch(request())
@@ -235,6 +274,10 @@ function recent() {
     }
 }
 
+/**
+ * @description Dispatch all the actions and run any services which will load
+ * the top rated recipes.
+ */
 function top() {
     return dispatch => {
         dispatch(request())
@@ -269,6 +312,11 @@ function top() {
     }
 }
 
+/**
+ * @description Dispatch any actions and run any services which mean that a
+ * user can like a recipe.
+ * @param {Integer} id - The id of the recipe the user is liking.
+ */
 function like(id) {
     return dispatch => {
         dispatch(request())
@@ -302,6 +350,11 @@ function like(id) {
     }
 }
 
+/**
+ * @description Dispatch any actions and run any services that allow
+ * the user to unlike a recipe.
+ * @param {integer} id - The id of recipe which the user is unliking.
+ */
 function unlike(id) {
     return dispatch => {
         dispatch(request())
@@ -335,6 +388,11 @@ function unlike(id) {
     }
 }
 
+/**
+ * @description Dispatch the actions and run services which will mark a recipe
+ * as reported.
+ * @param {Integer} id - The id of the recipe the user is reporting.
+ */
 function report(id) {
     return dispatch => {
         dispatch(request())
@@ -368,6 +426,11 @@ function report(id) {
     }
 }
 
+/**
+ * @description Dispatch the actions and run services which will allow the user
+ * to search for a recipe.
+ * @param {String} query - The string which will be search for in the database.
+ */
 function search(query) {
     return dispatch => {
         dispatch(request())
@@ -402,6 +465,11 @@ function search(query) {
     }
 }
 
+/**
+ * @description Dispatch any actions and run any services which will load the
+ * user recipes.
+ * @param {Integer} id - The id of the user whose recipes we want to load.
+ */
 function userRecipes(id) {
     return dispatch => {
         dispatch(request())
@@ -436,6 +504,11 @@ function userRecipes(id) {
     }
 }
 
+/**
+ * @description Dispatch any actions and run services to load the a
+ * users liked recipes.
+ * @param {Integer} id - The id of the user whose recipes we want to load.
+ */
 function likedRecipes(id) {
     return dispatch => {
         dispatch(request())
