@@ -39,6 +39,7 @@ class Recipe extends React.Component {
                 </div>
                 <ul className="steps"> { /* TODO - rename this classname to make sense */ }
                     <li>
+                        <h1>Ingredients</h1>
                         <div className="step">
                             <pre>{this.props.recipe.ingredients}</pre>
                         </div>
@@ -47,6 +48,7 @@ class Recipe extends React.Component {
                 <ul className="steps"> { /* Render the recipe steps */ }
                     {this.props.recipe.steps && JSON.parse(this.props.recipe.steps).map((step, stepIndex) =>
                         <li key={stepIndex}>
+                            <h1>{`Step ${stepIndex + 1}`}</h1>
                             <div className="step">
                                 {(step.image &&
                                   <React.Fragment>

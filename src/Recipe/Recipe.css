@@ -12,7 +12,6 @@
     border: 1px solid #ccc;
     overflow: auto;
     padding: 1em;
-    margin-bottom: 1em;
 }
 
 .recipe .preview-image, .recipe .meta {
@@ -51,7 +50,10 @@
 .recipe .steps h1 {
     float: left;
     font-size: 1em;
-    padding: 1em;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.1em;
 }
 
 .recipe .step img {
