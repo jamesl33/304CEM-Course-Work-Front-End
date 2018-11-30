@@ -1,6 +1,5 @@
 import React from 'react'
 import { RecipeForm } from '../components/forms/Recipe'
-import './RecipeEdit.css'
 
 /**
  * @description This component is very simmilar to the RecipeUpload component

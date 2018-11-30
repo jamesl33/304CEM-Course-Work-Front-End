@@ -1,6 +1,5 @@
 import React from 'react'
 import { LoginForm } from '../components/forms/Login'
-import './Login.css'
 
 /**
  * @description The page that the user navigates to so that they can

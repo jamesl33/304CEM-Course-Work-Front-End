@@ -1,6 +1,5 @@
 import React from 'react'
 import { RecipeForm } from '../components/forms/Recipe'
-import './RecipeUpload.css'
 
 /**
  * @description Display a form so that the user can upload new recipes to

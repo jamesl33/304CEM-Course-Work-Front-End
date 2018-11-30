@@ -1,6 +1,5 @@
 import React from 'react'
 import { RegisterForm } from '../components/forms/Register'
-import './Register.css'
 
 /**
  * @description Component which represents the page the user visits so that

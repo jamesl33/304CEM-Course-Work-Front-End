@@ -1,5 +1,4 @@
 import React from 'react'
-import './NotFound.css'
 
 /**
  * @description This component is rendered whenever the user tries
