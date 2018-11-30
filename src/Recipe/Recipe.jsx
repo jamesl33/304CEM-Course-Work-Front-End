@@ -37,6 +37,13 @@ class Recipe extends React.Component {
                         </div>
                     </div>
                 </div>
+                <ul className="steps"> { /* TODO - rename this classname to make sense */ }
+                    <li>
+                        <div className="step">
+                            <pre>{this.props.recipe.ingredients}</pre>
+                        </div>
+                    </li>
+                </ul>
                 <ul className="steps"> { /* Render the recipe steps */ }
                     {this.props.recipe.steps && JSON.parse(this.props.recipe.steps).map((step, stepIndex) =>
                         <li key={stepIndex}>
@@ -62,22 +69,22 @@ class Recipe extends React.Component {
                         <p>{`${this.props.recipe.views} Views, ${this.props.recipe.likes} Likes`}</p>
                     </div>
                     <div className="user-actions">
+                        <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
+                            <i className="fa fa-ban"></i>
+                        </button>
+                        {(!this.props.recipe.liked &&
+                          <button onClick={() => this.props.likeRecipe(this.props.match.params.id)} disabled={this.props.recipe.liked || this.props.recipe.liking}>
+                              <i className="fa fa-thumbs-up"></i>
+                          </button>) ||
+                         <button onClick={() => this.props.unlikeRecipe(this.props.match.params.id)} disabled={this.props.recipe.unliking}>
+                             <i className="fa fa-thumbs-down"></i>
+                         </button>}
                         {localStorage.getItem('user') && ((JSON.parse(localStorage.getItem('user')).id === this.props.recipe.createdBy)) &&
                          <React.Fragment>
                              <button onClick={() => helpers.history.push('/recipe/edit/' + this.props.match.params.id)}>
                                  <i className="fa fa-edit"></i>
                              </button>
                          </React.Fragment>}
-                        <button onClick={() => this.props.reportRecipe(this.props.match.params.id)} disabled={this.props.recipe.reported || this.props.recipe.reporting}>
-                            <i className="fa fa-ban"></i>
-                        </button>
-                        {localStorage.getItem('user') && ((!this.props.recipe.liked &&
-                          <button onClick={() => this.props.likeRecipe(this.props.match.params.id)} disabled={this.props.recipe.liked || this.props.recipe.liking}>
-                              <i className="fa fa-thumbs-up"></i>
-                          </button>) ||
-                         <button onClick={() => this.props.unlikeRecipe(this.props.match.params.id)} disabled={this.props.recipe.unliking}>
-                             <i className="fa fa-thumbs-down"></i>
-                         </button>)}
                         <button onClick={() => helpers.history.push('/profile/' + this.props.recipe.createdBy)}>
                             <i className="fa fa-user"></i>
                         </button>

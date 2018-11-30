@@ -34,6 +34,10 @@
     width: 100%;
 }
 
+.recipe-form textarea {
+    height: 10em;
+}
+
 .form ul {
     border-radius: 0.25em;
     border: 1px solid #ccc;

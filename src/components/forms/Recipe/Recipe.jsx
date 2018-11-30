@@ -75,7 +75,7 @@ class RecipeForm extends React.Component {
                             <label>Ingredients</label>
                         </div>
                         <div className="col-80">
-                            <Field name="ingredients" component={renderInput} type="text" placeholder="Ingredients" validate={required}/>
+                            <Field name="ingredients" component={renderTextarea} type="text" placeholder="Ingredients" validate={required}/>
                         </div>
                     </div>
                     <div className="row">

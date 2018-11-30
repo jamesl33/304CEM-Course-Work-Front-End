@@ -17,6 +17,7 @@ function save(recipe) {
 
         services.recipe.save(recipe)
                 .then(() => {
+                    helpers.history.push('/')
                     dispatch(success())
                 })
                 .catch(error => {
@@ -93,8 +94,8 @@ function publish(recipe) {
 
         services.recipe.publish(recipe)
                 .then(recipe => {
+                    helpers.history.push('/')
                     dispatch(success())
-                    helpers.history.push(recipe.url)
                 })
                 .catch(error => {
                     dispatch(failure(error))
