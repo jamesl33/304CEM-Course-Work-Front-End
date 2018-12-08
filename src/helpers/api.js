@@ -29,6 +29,22 @@ const api = {
             },
             method: 'post'
         }
+    },
+    putRequest: () => {
+        return {
+            headers: {
+                authorization: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : undefined
+            },
+            method: 'put'
+        }
+    },
+    getRequest: () => {
+        return {
+            headers: {
+                authorization: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : undefined
+            },
+            method: 'get'
+        }
     }
 }
 

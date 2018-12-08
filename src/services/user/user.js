@@ -52,7 +52,7 @@ function logout() {
  * @param {Integer} id - The id of the user whose profile we want to load.
  */
 function loadProfile(id) {
-    return fetch(`${constants.api.url}/user/profile`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/user/profile?id=${id}`, helpers.api.getRequest)
         .then(helpers.api.handleResponse)
 }
 

@@ -50,7 +50,7 @@ function save(recipe) {
  * @param {Integer} id - The id of the recipe to be loaded.
  */
 function edit(id) {
-    return fetch(`${constants.api.url}/recipe/edit`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/edit?id=${id}`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -71,7 +71,7 @@ function publish(recipe) {
  * @param {Integer} id - The id of the recipe to edit.
  */
 function togglePublished(id) {
-    return fetch(`${constants.api.url}/recipe/publish/toggle`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/publish/toggle?id=${id}`, helpers.api.putRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -89,7 +89,7 @@ function update(recipe) {
  * @param {Integer} id - The id of the recipe to be loaded.
  */
 function load(id) {
-    return fetch(`${constants.api.url}/recipe/load`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/load?id=${id}`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -97,7 +97,7 @@ function load(id) {
  * @description Load five of the most recent recipes from the api.
  */
 function recent() {
-    return fetch(`${constants.api.url}/recipe/recent`, helpers.api.jsonRequest(JSON.stringify({})))
+    return fetch(`${constants.api.url}/recipe/recent`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -105,7 +105,7 @@ function recent() {
  * @description Load the top five recipes from the api.
  */
 function top() {
-    return fetch(`${constants.api.url}/recipe/top`, helpers.api.jsonRequest(JSON.stringify({})))
+    return fetch(`${constants.api.url}/recipe/top`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -114,7 +114,7 @@ function top() {
  * @param {Integer} id - The id of the recipe that the user is liking.
  */
 function like(id) {
-    return fetch(`${constants.api.url}/recipe/like`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/like?id=${id}`, helpers.api.putRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -123,7 +123,7 @@ function like(id) {
  * @param {Integer} id - The id of the recipe the user is unliking.
  */
 function unlike(id) {
-    return fetch(`${constants.api.url}/recipe/unlike`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/unlike?id=${id}`, helpers.api.putRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -132,7 +132,7 @@ function unlike(id) {
  * @param {Integer} id - The id of the recipe that the user is reporting.
  */
 function report(id) {
-    return fetch(`${constants.api.url}/recipe/report`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/report?id=${id}`, helpers.api.putRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -141,7 +141,7 @@ function report(id) {
  * @param {String} query - The query that will be used when searching the database.
  */
 function search(query) {
-    return fetch(`${constants.api.url}/recipe/search`, helpers.api.jsonRequest(JSON.stringify({ query: query })))
+    return fetch(`${constants.api.url}/recipe/search?query=${query}`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -150,7 +150,7 @@ function search(query) {
  * @param {Integer} id - The id of the user we are loading recipes for.
  */
 function userRecipes(id) {
-    return fetch(`${constants.api.url}/recipe/user`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/user?id=${id}`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
@@ -159,7 +159,7 @@ function userRecipes(id) {
  * @param {Integer} id - The id of the user we are loading recipes for.
  */
 function likedRecipes(id) {
-    return fetch(`${constants.api.url}/recipe/liked`, helpers.api.jsonRequest(JSON.stringify({ id: id })))
+    return fetch(`${constants.api.url}/recipe/liked?id=${id}`, helpers.api.getRequest())
         .then(helpers.api.handleResponse)
 }
 
