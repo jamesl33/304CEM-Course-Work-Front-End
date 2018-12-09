@@ -21,7 +21,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "for _file in $(find . -type f -not -path './node_modules*' -name '*.js' -o -name '*.jsx'); do ./node_modules/.bin/eslint $_file; done",
+        "lint": "for _file in $(find . -type f -name '*.js' -o -name '*.jsx' | grep -vE './node_modules|./docs'); do ./node_modules/.bin/eslint $_file; done",
         "document": "./node_modules/.bin/jsdoc --configure jsdoc.json --destination docs"
     },
     "repository": {
