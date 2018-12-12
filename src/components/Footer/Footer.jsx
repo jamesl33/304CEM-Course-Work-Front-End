@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './Footer.css'
 
 class Footer extends React.Component {
@@ -9,7 +8,6 @@ class Footer extends React.Component {
                 <div className="left-justify">
                     <ul>
                         <a href="//github.coventry.ac.uk/leej64/304CEM-Course-Work-Front-End">GitHub</a>
-                        <Link to="/about">About</Link>
                     </ul>
                 </div>
                 <div className="right-justify">
