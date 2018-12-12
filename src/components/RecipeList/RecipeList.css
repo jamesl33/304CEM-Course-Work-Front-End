@@ -61,6 +61,10 @@
         width: 100%;
     }
 
+    .headings {
+        font-size: 1.25em;
+    }
+
     .recipe-meta a, .recipe-meta p {
         padding: 0;
         margin: 0;
