@@ -45,18 +45,24 @@
     float: right;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1100px) {
     .recipe-card {
         display: inline-block;
         overflow: auto;
     }
 
     .recipe-preview img {
-        width: 100%;
+        max-width: 100%;
         height: auto;
+        object-fit: contain;
     }
 
     .recipe-card .recipe-preview, .recipe-card .recipe-meta {
         width: 100%;
+    }
+
+    .recipe-meta a, .recipe-meta p {
+        padding: 0;
+        margin: 0;
     }
 }
